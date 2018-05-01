@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 13:53:33 by terng             #+#    #+#             */
-/*   Updated: 2018/05/01 16:19:03 by nkamolba         ###   ########.fr       */
+/*   Created: 2018/04/26 15:36:40 by terng             #+#    #+#             */
+/*   Updated: 2018/05/01 16:20:27 by nkamolba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "ZombieHorde.hpp"
 
-# include <iostream>
-
-class Zombie
+int	main(void)
 {
-	public:
+	ZombieHorde	horde(5);
 
-		Zombie(void);
-		Zombie(std::string name, std::string type);
-		~Zombie(void);
-
-		void		announce(void);
-		void		set_name(std::string name);
-		void		set_type(std::string type);
-
-	private:
-
-		std::string	name;
-		std::string	type;
-};
-
-#endif
+	horde.announce();
+	return (0);
+}

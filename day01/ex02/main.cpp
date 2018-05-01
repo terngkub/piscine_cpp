@@ -6,7 +6,7 @@
 /*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 15:36:40 by terng             #+#    #+#             */
-/*   Updated: 2018/04/26 16:08:14 by terng            ###   ########.fr       */
+/*   Updated: 2018/05/01 16:23:50 by nkamolba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(void)
 	zombies[4] = ze2.randomChump();
 
 	for (int i = 0; i < 5; i++)
-		zombies[i]->annouce();
+		zombies[i]->announce();
 	
 	for (int i = 0; i < 5; i++)
 		delete zombies[i];

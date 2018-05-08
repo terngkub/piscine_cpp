@@ -6,13 +6,13 @@
 /*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 10:31:20 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/08 19:17:30 by nkamolba         ###   ########.fr       */
+/*   Updated: 2018/05/09 00:47:48 by nkamolba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void) : CrapTrap()
+FragTrap::FragTrap(void) : ClapTrap()
 {
 	std::cout << "FragTrap default constructor called" << std::endl;
 
@@ -26,7 +26,7 @@ FragTrap::FragTrap(void) : CrapTrap()
 	this->armor_damage_reduction = 5;
 }
 
-FragTrap::FragTrap(std::string name) : CrapTrap(name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "FragTrap name constructor called" << std::endl;
 
@@ -40,7 +40,7 @@ FragTrap::FragTrap(std::string name) : CrapTrap(name)
 	this->armor_damage_reduction = 5;
 }
 
-FragTrap::FragTrap(FragTrap const &src) : CrapTrap(src)
+FragTrap::FragTrap(FragTrap const &src) : ClapTrap(src)
 {
 	std::cout << "FragTrap copy constructor called" << std::endl;
 }

@@ -6,16 +6,16 @@
 /*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 10:23:13 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/08 19:17:21 by nkamolba         ###   ########.fr       */
+/*   Updated: 2018/05/09 00:47:51 by nkamolba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRAGTRAP_H
 # define FRAGTRAP_H
 
-# include "CrapTrap.hpp"
+# include "ClapTrap.hpp"
 
-class FragTrap : public CrapTrap
+class FragTrap : public ClapTrap
 {
 	public:
 		FragTrap(void);

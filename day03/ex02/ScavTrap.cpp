@@ -6,13 +6,13 @@
 /*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 10:31:20 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/08 19:17:15 by nkamolba         ###   ########.fr       */
+/*   Updated: 2018/05/09 00:47:55 by nkamolba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void) : CrapTrap()
+ScavTrap::ScavTrap(void) : ClapTrap()
 {
 	std::cout << "ScavTrap default constructor called" << std::endl;
 
@@ -26,7 +26,7 @@ ScavTrap::ScavTrap(void) : CrapTrap()
 	this->armor_damage_reduction = 3;
 }
 
-ScavTrap::ScavTrap(std::string name) : CrapTrap(name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap name constructor called" << std::endl;
 
@@ -40,7 +40,7 @@ ScavTrap::ScavTrap(std::string name) : CrapTrap(name)
 	this->armor_damage_reduction = 3;
 }
 
-ScavTrap::ScavTrap(ScavTrap const &src) : CrapTrap(src)
+ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap(src)
 {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 }

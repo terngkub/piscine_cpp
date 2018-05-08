@@ -6,7 +6,7 @@
 /*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 10:31:20 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/08 14:40:21 by nkamolba         ###   ########.fr       */
+/*   Updated: 2018/05/08 15:54:33 by nkamolba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ FragTrap::FragTrap(void) : hit_points(100),
 	ranged_attack_damage(20),
 	armor_damage_reduction(5)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "FragTrap default constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) :
@@ -37,26 +37,25 @@ FragTrap::FragTrap(std::string name) :
 	ranged_attack_damage(20),
 	armor_damage_reduction(5)
 {
-	std::cout << "Name constructor called" << std::endl;
+	std::cout << "FragTrap name constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(FragTrap const &src)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "FragTrap copy constructor called" << std::endl;
 	*this = src;
 }
 
 FragTrap::~FragTrap(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "FragTrap destructor called" << std::endl;
 }
 
 FragTrap	&FragTrap::operator=(FragTrap const &rhs)
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "FragTrap assignation operator called" << std::endl;
 	if (this != &rhs)
 	{
-		/*
 		this->hit_points = rhs.hit_points;
 		this->max_hit_points = rhs.max_hit_points;
 		this->energy_points = rhs.energy_points;
@@ -65,15 +64,14 @@ FragTrap	&FragTrap::operator=(FragTrap const &rhs)
 		this->name = rhs.name;
 		this->melee_attack_damage = rhs.melee_attack_damage;
 		this->ranged_attack_damage = rhs.ranged_attack_damage;
-		this->armor_damage_reductions =  rhs.armor_damage_reductions;
-		*/
+		this->armor_damage_reduction =  rhs.armor_damage_reduction;
 	}
 	return *this;
 }
 
 void		FragTrap::rangedAttack(std::string const &target)
 {
-	std::cout << "FR4G-TP ";
+	std::cout << "FragTrap ";
 	std::cout << this->name;
 	std::cout << " attacks ";
 	std::cout << target;
@@ -85,7 +83,7 @@ void		FragTrap::rangedAttack(std::string const &target)
 
 void		FragTrap::meleeAttack(std::string const &target)
 {
-	std::cout << "FR4G-TP ";
+	std::cout << "FragTrap ";
 	std::cout << this->name;
 	std::cout << " attacks ";
 	std::cout << target;
@@ -97,12 +95,12 @@ void		FragTrap::meleeAttack(std::string const &target)
 
 void		FragTrap::takeDamage(unsigned int amount)
 {
-	if (this->hit_points - amount <= 0)
+	if (this->hit_points - (int)amount < 0)
 		this->hit_points = 0;
 	else
 		this->hit_points -= amount;
 
-	std::cout << "FR4G-TP ";
+	std::cout << "FragTrap ";
 	std::cout << this->name;
 	std::cout << " takes damage of ";
 	std::cout << amount;
@@ -114,12 +112,12 @@ void		FragTrap::takeDamage(unsigned int amount)
 
 void		FragTrap::beRepaired(unsigned int amount)
 {
-	if (this->hit_points + amount >= this->max_hit_points)
+	if (this->hit_points + amount > this->max_hit_points)
 		this->hit_points = this->max_hit_points;
 	else
 		this->hit_points += amount;
 
-	std::cout << "FR4G-TP ";
+	std::cout << "FragTrap ";
 	std::cout << this->name;
 	std::cout << " is repaired by ";
 	std::cout << amount;
@@ -135,17 +133,17 @@ void		FragTrap::vaulthunter_dot_exe(std::string const &target)
 		"shooting",
 		"dancing",
 		"sleeping",
-		"stealing his/her money",
-		"ignoring him/her"
+		"stealing money",
+		"ignoring"
 	};
 
 	if (this->energy_points < 25)
 	{
-		std::cout << "FR4G-TP tries to use vaulthunter_dot_exe but doesn't have enough energy." << std::endl;
+		std::cout << "FragTrap tries to use vaulthunter_dot_exe but doesn't have enough energy." << std::endl;
 	}
 	else
 	{
-		std::cout << "FR4G-TP ";
+		std::cout << "FragTrap ";
 		std::cout << this->name;
 		std::cout << " attacks ";
 		std::cout << target;
@@ -155,4 +153,64 @@ void		FragTrap::vaulthunter_dot_exe(std::string const &target)
 		std::cout << std::endl;
 		this->energy_points -= 25;
 	}
+}
+
+std::string		FragTrap::get_name(void) const
+{
+	return (this->name);
+}
+
+int				FragTrap::get_hit_points(void) const
+{
+	return (this->hit_points);
+}
+
+int				FragTrap::get_max_hit_points(void) const
+{
+	return (this->max_hit_points);
+}
+
+int				FragTrap::get_energy_points(void) const
+{
+	return (this->energy_points);
+}
+
+int				FragTrap::get_max_energy_points(void) const
+{
+	return (this->max_energy_points);
+}
+
+int				FragTrap::get_level(void) const
+{
+	return (this->level);
+}
+
+int				FragTrap::get_melee_attack_damage(void) const
+{
+	return (this->melee_attack_damage);
+}
+
+int				FragTrap::get_ranged_attack_damage(void) const
+{
+	return (this->ranged_attack_damage);
+}
+
+int				FragTrap::get_armor_damage_reduction(void) const
+{
+	return (this->armor_damage_reduction);
+}
+
+std::ostream	&operator<<(std::ostream &o, FragTrap const &rhs)
+{
+	o << "FragTrap" << std::endl;
+	o << "Name: " << rhs.get_name() << std::endl;
+	o << "Hit points: " << rhs.get_hit_points() << std::endl;
+	o << "Max hit points: " << rhs.get_max_hit_points() << std::endl;
+	o << "Energy points: " << rhs.get_energy_points() << std::endl;
+	o << "Max energy points: " << rhs.get_max_energy_points() << std::endl;
+	o << "Level: " << rhs.get_level() << std::endl;
+	o << "Melee attack damage: " << rhs.get_melee_attack_damage() << std::endl;
+	o << "Ranged attack damage: " << rhs.get_ranged_attack_damage() << std::endl;
+	o << "Armor damage reduction: " << rhs.get_armor_damage_reduction();
+	return (o);
 }

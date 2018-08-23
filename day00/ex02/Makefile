@@ -1,7 +1,7 @@
-NAME = phonebook
+NAME = account
 CLANG = clang++
 FLAG = -Wall -Wextra -Werror
-FILE = main.cpp Contact.cpp Phonebook.cpp
+FILE = tests.cpp Account.class.cpp
 OBJ = $(FILE:%.cpp=%.o)
 
 all: $(NAME)

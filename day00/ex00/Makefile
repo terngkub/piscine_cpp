@@ -1,22 +1,10 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/04/20 14:18:20 by nkamolba          #+#    #+#              #
-#    Updated: 2018/04/20 14:33:22 by nkamolba         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = megaphone
 CLANG = clang++
 FLAG = -Wall -Wextra -Werror
 FILE = megaphone.cpp
 OBJ = $(FILE:%.cpp=%.o)
 
-all : $(NAME)
+all :$(NAME)
 
 $(NAME) : $(OBJ)
 	$(CLANG) $(FLAG) -o $(NAME) $(OBJ)

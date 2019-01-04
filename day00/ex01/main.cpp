@@ -17,7 +17,7 @@ int main()
 
     while (1)
     {
-        std::string  command = get_command();
+        std::string command = get_command();
         if (command == "EXIT")
             return 0;
         else if (command == "ADD")

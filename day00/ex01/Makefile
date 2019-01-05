@@ -1,19 +1,25 @@
+CC = clang++
+CFLAGS = -Wall -Wextra -Werror
+
 NAME = phonebook
-CLANG = clang++
-FLAG = -Wall -Wextra -Werror
-FILE = main.cpp Contact.cpp Phonebook.cpp
-OBJ = $(FILE:%.cpp=%.o)
+FILES = main.cpp Phonebook.cpp Contact.cpp
+
+OBJS_DIR = objs
+OBJS = $(addprefix $(OBJS_DIR)/,$(FILES:%.cpp=%.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CLANG) $(FLAG) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS_DIR) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.cpp
-	$(CLANG) $(FLAG) -c $< -o $@
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
+$(OBJS_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)

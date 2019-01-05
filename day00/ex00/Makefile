@@ -1,19 +1,25 @@
+CC = clang++
+CFLAGS = -Wall -Wextra -Werror
+
 NAME = megaphone
-CLANG = clang++
-FLAG = -Wall -Wextra -Werror
-FILE = megaphone.cpp
-OBJ = $(FILE:%.cpp=%.o)
+FILES = megaphone.cpp
 
-all :$(NAME)
+OBJS_DIR = objs
+OBJS = $(addprefix $(OBJS_DIR)/,$(FILES:%.cpp=%.o))
 
-$(NAME) : $(OBJ)
-	$(CLANG) $(FLAG) -o $(NAME) $(OBJ)
+all: $(NAME)
 
-%.o: %.cpp
-	$(CLANG) $(FLAG) -c $< -o $@
+$(NAME): $(OBJS_DIR) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
+$(OBJS_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)

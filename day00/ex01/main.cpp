@@ -1,31 +1,23 @@
-#include "Contact.hpp"
 #include "Phonebook.hpp"
-#include <iostream> 
-#include <string>
+#include <iostream>
 
-std::string get_command()
+int	main(void)
 {
-    std::cout << "Please in put a command [ADD|SEARCH|EXIT]: ";
-    std::string command;
-    std::cin >> command;
-    return command;
-}
+	Phonebook	phonebook;
+	std::string	command;
 
-int main()
-{
-    Phonebook phonebook;
-
-    while (1)
-    {
-        std::string command = get_command();
-        if (command == "EXIT")
-            return 0;
-        else if (command == "ADD")
-            phonebook.add_contact();
-        else if (command == "SEARCH")
-            phonebook.search_contact();
-        else
-            std::cout << "Wrong command.\n";
-    }
-    return 0;
+	while (1)
+	{
+		std::cout << "Enter command [ADD|SEARCH|EXIT]: ";
+		std::cin >> command;
+		if (command == "EXIT")
+			return (0);
+		else if (command == "ADD")
+			phonebook.add();
+		else if (command == "SEARCH")
+			phonebook.search();
+		else
+			std::cout << "Wrong command. Valid command: ADD, SEARCH, EXIT.\n";
+	}
+	return (0);
 }

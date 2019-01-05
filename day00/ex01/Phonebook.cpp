@@ -1,40 +1,40 @@
 #include "Phonebook.hpp"
 #include <iostream>
+#include <limits>
 
-Phonebook::Phonebook() : maximum_contact(2), nb_contact(0) {}
-Phonebook::~Phonebook() {};
+Phonebook::Phonebook() : contact_nb(0) {}
 
-void Phonebook::add_contact()
+void	Phonebook::add()
 {
-    if (nb_contact >= maximum_contact)
-    {
-        std::cout << "This phonebook is full. You can only SEARCH." << std::endl << std::endl;
-        return ;
-    }
-    contacts[nb_contact++].add();
+	if (contact_nb >= 8)
+	{
+		std::cout << "Phone book is full. You can only SEARCH and EXIT.\n";
+		return ;
+	}
+	contact[contact_nb++].add();
 }
 
-void Phonebook::search_contact()
+void	Phonebook::search() const
 {
-    if (nb_contact == 0)
-    {
-        std::cout << "There is no contact in phonebook. Please ADD some before SEARCH." << std::endl;
-        return ;
-    }
-    for (std::size_t i = 0; i < nb_contact; i++)
-        contacts[i].preview(i);
-    while (1)
-    {
-        std::cout << "Please choose an index: ";
-        int index = -1;
-        std::cin >> index;
-        if (index < 0 || index >= (int)nb_contact)
-            std::cout << "Index out of range. Please try again." << std::endl << std::endl;
-        else
-        {
-            std::cout << std::endl;
-            contacts[index].print();
-            return ;
-        }
-    }
+	if (contact_nb == 0)
+	{
+		std::cout << "Phonebook is empty. Please ADD a contact.\n";
+		return ;
+	}
+	for (int i = 0; i < contact_nb; i++)
+		contact[i].preview(i);
+
+	std::cout << "Enter an index: ";
+	int index = -1;
+	std::cin >> index;
+	if (!std::cin)
+	{
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Wrong input.\n";
+	}
+	else if (index < 0 || index >= contact_nb)
+		std::cout << "Index out of range.\n";
+	else
+		contact[index].print();
 }

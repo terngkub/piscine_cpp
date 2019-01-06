@@ -5,11 +5,9 @@ class Human
 {
 public:
 	Human();
-	~Human();
 	std::string	identify() const;
-	Brain const	&getBrain() const;
+	Brain		&getBrain();
 
 private:
-	Brain const _brain;
-
+	Brain _brain;
 };

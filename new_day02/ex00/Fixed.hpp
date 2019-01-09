@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
 class Fixed
 {
@@ -14,3 +15,5 @@ private:
 	int _rawBits;
 	static const int _fractionalBit = 8;
 };
+
+#endif

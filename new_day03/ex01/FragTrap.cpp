@@ -15,6 +15,21 @@ _armorDamageReduction(5)
 	std::cout << "FragTrap default constructor called\n";
 }
 
+FragTrap::FragTrap(std::string name) :
+_name(name),
+_hitPoints(100),
+_maxHitPoints(100),
+_energyPoints(100),
+_maxEnergyPoints(100),
+_level(1),
+_meleeAttackDamage(30),
+_rangedAttackDamage(20),
+_armorDamageReduction(5)
+{
+	std::cout << "FragTrap name constructor called\n";
+}
+
+
 FragTrap::FragTrap(FragTrap const & src) :
 _name(src._name),
 _hitPoints(src._hitPoints),
@@ -156,7 +171,7 @@ void FragTrap::vaulthunter_dot_exe(std::string const & target)
 	};
 
 	if (_energyPoints < 25)
-		std::cout << "FragTrap tries to use vaulthunter_dot_exe but doesn't have enough energy.\n";
+		std::cout << "FR4G-TP " << _name << "tries to use vaulthunter_dot_exe but doesn't have enough energy.\n";
 	else
 	{
 		std::cout

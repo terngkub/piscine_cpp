@@ -1,11 +1,15 @@
+#include <iostream>
 #include "ISpaceMarine.hpp"
 #include "ISquad.hpp"
 #include "Squad.hpp"
 #include "AssaultTerminator.hpp"
 #include "TacticalMarine.hpp"
 
-int main()
+void subjectTest()
 {
+	std::cout << "Test from subject\n";
+	std::cout << "__________________________\n\n";
+
 	ISpaceMarine *bob = new TacticalMarine;
 	ISpaceMarine *jim = new AssaultTerminator;
 
@@ -20,6 +24,41 @@ int main()
 		cur->meleeAttack();
 	}
 	delete vlc;
+}
 
+void copyTest()
+{
+	std::cout << "\nCopy test\n";
+	std::cout << "__________________________\n\n";
+
+	ISpaceMarine *a = new TacticalMarine;
+	ISpaceMarine *b = new AssaultTerminator;
+	ISpaceMarine *c = new TacticalMarine;
+	ISpaceMarine *d = new TacticalMarine;
+
+	Squad* sq1 = new Squad;
+	sq1->push(a);
+	sq1->push(b);
+	sq1->push(c);
+	sq1->push(d);
+	for (int i = 0; i < sq1->getCount(); ++i)
+	{
+		ISpaceMarine* cur = sq1->getUnit(i);
+		cur->battleCry();
+	}
+	ISquad* sq2 = new Squad(*sq1);
+	for (int i = 0; i < sq2->getCount(); ++i)
+	{
+		ISpaceMarine* cur = sq2->getUnit(i);
+		cur->battleCry();
+	}
+	delete sq1;
+	delete sq2;
+}
+
+int main()
+{
+	subjectTest();
+	copyTest();
 	return 0;
 }

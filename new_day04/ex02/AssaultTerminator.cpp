@@ -13,6 +13,7 @@ AssaultTerminator::~AssaultTerminator()
 
 AssaultTerminator::AssaultTerminator(AssaultTerminator const & src)
 {
+	std::cout << "* teleports from space *\n";
 	*this = src;
 }
 

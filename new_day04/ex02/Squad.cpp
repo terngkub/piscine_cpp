@@ -28,7 +28,7 @@ Squad & Squad::operator=(Squad const & rhs)
 		t_list * cur = rhs._first;
 		while (cur)
 		{
-			push(cur->content);
+			push(cur->content->clone());
 			cur = cur->next;
 		}
 	}

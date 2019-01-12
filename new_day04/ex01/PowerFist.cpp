@@ -1,7 +1,7 @@
 #include <iostream>
 #include "PowerFist.hpp"
 
-PowerFist::PowerFist() : AWeapon("Power Fist", 8, 20)
+PowerFist::PowerFist() : AWeapon("Power Fist", 8, 50)
 {
 }
 

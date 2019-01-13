@@ -19,7 +19,9 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const & src)
+Bureaucrat::Bureaucrat(Bureaucrat const & src) :
+	_grade(src.getGrade()),
+	_name(src.getName())
 {
 	*this = src;
 }
@@ -28,8 +30,7 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const & rhs)
 {
 	if (this != &rhs)
 	{
-		_name = rhs._name;
-		_grade = rhs._grade;
+		_grade = rhs.getGrade();
 	}
 	return *this;
 }
@@ -61,54 +62,56 @@ void Bureaucrat::decrementGrade()
 }
 
 
-GradeTooHighException::GradeTooHighException()
+Bureaucrat::GradeTooHighException::GradeTooHighException()
 {
 }
 
-GradeTooHighException::~GradeTooHighException()
+Bureaucrat::GradeTooHighException::~GradeTooHighException()
 {
 }
 
-GradeTooHighException::GradeTooHighException(GradeTooHighException const & src)
+Bureaucrat::GradeTooHighException::GradeTooHighException(Bureaucrat::GradeTooHighException const & src)
 {
+	*this = src;
 }
 
-GradeTooHighException & GradeTooHighException::operator=(GradeTooHighException const & rhs)
+Bureaucrat::GradeTooHighException & Bureaucrat::GradeTooHighException::operator=(Bureaucrat::GradeTooHighException const & rhs)
 {
 	(void)rhs;
 	return *this;
 }
 
-virtual const char * GradeTooHighException::what() const throw()
+const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Grade too high\n";
+	return "Grade too high";
 }
 
-GradeTooLowException::GradeTooLowException()
-{
-}
-
-GradeTooLowException::~GradeTooLowException()
+Bureaucrat::GradeTooLowException::GradeTooLowException()
 {
 }
 
-GradeTooLowException::GradeTooLowException(GradeTooLowException const & src)
+Bureaucrat::GradeTooLowException::~GradeTooLowException()
 {
 }
 
-GradeTooLowException & GradeTooLowException::operator=(GradeTooLowException const & rhs)
+Bureaucrat::GradeTooLowException::GradeTooLowException(Bureaucrat::GradeTooLowException const & src)
+{
+	*this = src;
+}
+
+Bureaucrat::GradeTooLowException & Bureaucrat::GradeTooLowException::operator=(Bureaucrat::GradeTooLowException const & rhs)
 {
 	(void)rhs;
 	return *this;
 }
 
-virtual const char * GradeTooLowException::what() const throw()
+const char * Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Grade too low\n";
+	return "Grade too low";
 }
 
-std::ostream & operator<<(std::ostream & o, Bureaucrat cosnt & rhs)
+std::ostream & operator<<(std::ostream & o, Bureaucrat const & rhs)
 {
-	o << "<" << _name << ">, bureaucrat grade <" << _grade << ">\n";
+	o << "<" << rhs.getName() << ">, bureaucrat grade <" << rhs.getGrade() << ">";
 	return o;
 }

@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat()
 {
@@ -61,17 +62,16 @@ void Bureaucrat::decrementGrade()
 		throw(GradeTooLowException());
 }
 
-void Bureaucrat::signForm(Form const & form)
+void Bureaucrat::signForm(Form & form) const
 {
 	try
 	{
 		form.beSigned(*this);
 		std::cout << _name << " signs " << form.getName() << "\n";
-
 	}
-	catch (std::exception e)
+	catch (std::exception & e)
 	{
-		std::cout << _name << " connot sign " << form.getName() << " because " << e.what();
+		std::cout << _name << " connot sign " << form.getName() << " because " << e.what() << "\n";
 	}
 }
 

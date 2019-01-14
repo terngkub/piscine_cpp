@@ -9,7 +9,7 @@ class Bureaucrat;
 class Form
 {
 public:
-	Form(std::string name, bool signEd, int signGrade, int ExecGrade);
+	Form(std::string name, int signGrade, int ExecGrade);
 	Form(Form const & src);
 	~Form();
 	Form & operator=(Form const & rhs);

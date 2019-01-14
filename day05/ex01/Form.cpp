@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form() :
 	_name(""),
@@ -7,9 +8,9 @@ Form::Form() :
 {
 }
 
-Form::Form(std::string name, bool signEd, int signGrade, int execGrade) :
+Form::Form(std::string name, int signGrade, int execGrade) :
 	_name(name),
-	_signed(signEd),
+	_signed(false),
 	_signGrade(signGrade),
 	_execGrade(execGrade)
 {

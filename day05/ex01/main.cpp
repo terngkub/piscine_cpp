@@ -58,11 +58,58 @@ void testBureaucrat()
 void testForm()
 {
 	// Test constructor
-	Bureaucrat b1(20, "Bur One");
-	Form f1("Form One", false, 100, 120);
+	Form f1("Form One", 100, 100);
+
+	try
+	{
+		Form f2("Form Two", 151, 100);
+	}
+	catch (std::exception & e)
+	{
+		std::cout << "Got exceptiop for signGrade: " << e.what() << "\n";
+	}
+
+	try
+	{
+		Form f3("Form Two", 0, 100);
+	}
+	catch (std::exception & e)
+	{
+		std::cout << "Got exception for signGrade: " << e.what() << "\n";
+	}
+
+	try
+	{
+		Form f4("Form Four", 100, 151);
+	}
+	catch (std::exception & e)
+	{
+		std::cout << "Got exceptiop for execGrade: " << e.what() << "\n";
+	}
+
+	try
+	{
+		Form f5("Form Two", 100, 0);
+	}
+	catch (std::exception & e)
+	{
+		std::cout << "Got exception for execGrade: " << e.what() << "\n";
+	}
+
+	// Test sign	
+
+	Bureaucrat b1(120, "Bur One");
+	Bureaucrat b2(20, "Bur Two");
 
 	b1.signForm(f1);
-
+	try
+	{
+		b2.signForm(f1);
+	}
+	catch (std::exception & e)
+	{
+		std::cout << "Got exception for sign: " << e.what() << "\n";
+	}
 }
 
 int main()

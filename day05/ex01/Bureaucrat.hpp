@@ -4,6 +4,8 @@
 # include <iostream>
 # include <string>
 
+class Form;
+
 class Bureaucrat
 {
 public:
@@ -17,14 +19,13 @@ public:
 
 	void incrementGrade();
 	void decrementGrade();
-	void signForm();
-
+	void signForm(Form const & form);
 
 	class GradeTooHighException : public std::exception
 	{
 	public:
 		GradeTooHighException();
-		~GradeTooHighException();
+		~GradeTooHighException() throw();
 		GradeTooHighException(GradeTooHighException const & src);
 		GradeTooHighException & operator=(GradeTooHighException const & rhs);
 		virtual const char * what() const throw();
@@ -34,7 +35,7 @@ public:
 	{
 	public:
 		GradeTooLowException();
-		~GradeTooLowException();
+		~GradeTooLowException() throw();
 		GradeTooLowException(GradeTooLowException const & src);
 		GradeTooLowException & operator=(GradeTooLowException const & rhs);
 		virtual const char * what() const throw();

@@ -21,7 +21,7 @@ public:
 	{
 	public:
 		GradeTooHighException();
-		~GradeTooHighException();
+		~GradeTooHighException() throw();
 		GradeTooHighException(GradeTooHighException const & src);
 		GradeTooHighException & operator=(GradeTooHighException const & rhs);
 		virtual const char * what() const throw();
@@ -31,7 +31,7 @@ public:
 	{
 	public:
 		GradeTooLowException();
-		~GradeTooLowException();
+		~GradeTooLowException() throw();
 		GradeTooLowException(GradeTooLowException const & src);
 		GradeTooLowException & operator=(GradeTooLowException const & rhs);
 		virtual const char * what() const throw();

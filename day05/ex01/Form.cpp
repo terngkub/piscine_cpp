@@ -1,15 +1,22 @@
 #include "Form.hpp"
 
-Form::Form()
+Form::Form() :
+	_name(""),
+	_signGrade(150),
+	_execGrade(150)
 {
 }
 
-Form::Form(std::string name, bool signEd, int signGrade, int ExecGrade) :
+Form::Form(std::string name, bool signEd, int signGrade, int execGrade) :
 	_name(name),
 	_signed(signEd),
 	_signGrade(signGrade),
 	_execGrade(execGrade)
 {
+	if (_signGrade < 1 || _execGrade < 1)
+		throw(GradeTooHighException());
+	else if (_signGrade > 150 || _execGrade > 150)
+		throw(GradeTooLowException());
 }
 
 Form::Form(Form const & src) :
@@ -24,16 +31,14 @@ Form::~Form()
 {
 }
 
-Form & operator=(Form const & rhs)
+Form & Form::operator=(Form const & rhs)
 {
 	if (this != &rhs)
-	{
 		_signed = rhs.getSigned();
-	}
 	return *this;
 }
 
-std::string getName() const
+std::string Form::getName() const
 {
 	return _name;
 }
@@ -53,8 +58,60 @@ int Form::getExecGrade() const
 	return _execGrade;
 }
 
-void Form::beSigned(Bureaucrat bureaucrat)
+void Form::beSigned(Bureaucrat const & bureaucrat)
 {
+	if (bureaucrat.getGrade() <= _signGrade)
+		_signed = true;
+	else
+		throw(GradeTooLowException());
+}
+
+Form::GradeTooHighException::GradeTooHighException()
+{
+}
+
+Form::GradeTooHighException::~GradeTooHighException() throw()
+{
+}
+
+Form::GradeTooHighException::GradeTooHighException(Form::GradeTooHighException const & src)
+{
+	*this = src;
+}
+
+Form::GradeTooHighException & Form::GradeTooHighException::operator=(Form::GradeTooHighException const & rhs)
+{
+	(void)rhs;
+	return *this;
+}
+
+const char * Form::GradeTooHighException::what() const throw()
+{
+	return "Grade too high";
+}
+
+Form::GradeTooLowException::GradeTooLowException()
+{
+}
+
+Form::GradeTooLowException::~GradeTooLowException() throw()
+{
+}
+
+Form::GradeTooLowException::GradeTooLowException(Form::GradeTooLowException const & src)
+{
+	*this = src;
+}
+
+Form::GradeTooLowException & Form::GradeTooLowException::operator=(Form::GradeTooLowException const & rhs)
+{
+	(void)rhs;
+	return *this;
+}
+
+const char * Form::GradeTooLowException::what() const throw()
+{
+	return "Grade too low";
 }
 
 std::ostream & operator<<(std::ostream & o, Form const & rhs)

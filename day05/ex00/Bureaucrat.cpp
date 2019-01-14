@@ -66,7 +66,7 @@ Bureaucrat::GradeTooHighException::GradeTooHighException()
 {
 }
 
-Bureaucrat::GradeTooHighException::~GradeTooHighException()
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
 {
 }
 
@@ -90,7 +90,7 @@ Bureaucrat::GradeTooLowException::GradeTooLowException()
 {
 }
 
-Bureaucrat::GradeTooLowException::~GradeTooLowException()
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 {
 }
 

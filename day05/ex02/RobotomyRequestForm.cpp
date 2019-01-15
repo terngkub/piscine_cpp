@@ -2,13 +2,13 @@
 #include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm() :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("robotomy request", 72, 45),
 	_target("")
 {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("robotomy request", 72, 45),
 	_target(target)
 {
 }
@@ -18,7 +18,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm::RobotomyRequestForm const & src) :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("robotomy request", 72, 45),
 	_target(src.getTarget())
 {
 	*this = src;
@@ -31,8 +31,19 @@ std::string RobotomyRequestForm::getTarget() const
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	(void)executor;
-	std::cout << "Robo execute.\n";
+	try
+	{
+		checkBureaucrat(executor);
+
+		if (rand() % 2 == 0)
+			std::cout << _target << " has been robotomized successfully\n";
+		else
+			std::cout << _target << " has failed to be robotomized\n";
+	}
+	catch (std::exception & e)
+	{
+		throw;
+	}
 }
 
 RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm::RobotomyRequestForm const & rhs)

@@ -1,14 +1,15 @@
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm() :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("shrubbery creation", 145, 137),
 	_target("")
 {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("shrubbery creation", 145, 137),
 	_target(target)
 {
 }
@@ -18,7 +19,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm::ShrubberyCreationForm const & src) :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("shrubbery creation", 145, 137),
 	_target(src.getTarget())
 {
 	*this = src;
@@ -31,14 +32,37 @@ std::string ShrubberyCreationForm::getTarget() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	/*
-	if (!getSigned())
-		throw(NotSignedException());
-	if (!hasEnoughExecGrade(executor))
-		throw(GradeTooLowException());
-		*/
-	checkBureaucrat(executor);
-	std::cout << "Shrubbery execute to "<< _target << "\n";
+	try
+	{
+		checkBureaucrat(executor);
+
+		std::ofstream file;
+		file.open(_target + "_shrubbery");
+
+		if (!file.is_open())
+		{
+			std::cout << "can't open file\n";
+			return ;
+		}
+		
+		file<< "   #\n"
+			<< "  ##&\n"
+			<< " #&#&#\n"
+			<< "###&#&#\n"
+			<< "   #\n";
+		
+		if (file.bad())
+		{
+			std::cout << "can't write file\n";
+			return ;
+		}
+
+		file.close();
+	}
+	catch (std::exception & e)
+	{
+		throw;
+	}
 }
 
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm::ShrubberyCreationForm const & rhs)
@@ -49,4 +73,3 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm::
 	}
 	return *this;
 }
-

@@ -71,7 +71,7 @@ void Form::checkBureaucrat(Bureaucrat const & bureaucrat) const
 {
 	if (!getSigned())
 		throw(NotSignedException());
-	if (bureaucrat.getGrade() <= _execGrade)
+	if (bureaucrat.getGrade() > _execGrade)
 		throw(GradeTooLowException());
 }
 

@@ -2,13 +2,13 @@
 #include <iostream>
 
 PresidentialPardonForm::PresidentialPardonForm() :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("presidential pardon", 25, 5),
 	_target("")
 {
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("presidential pardon", 25, 5),
 	_target(target)
 {
 }
@@ -18,7 +18,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm::PresidentialPardonForm const & src) :
-	Form("Shrubbery Creation Form", 145, 137),
+	Form("presidential pardon", 25, 5),
 	_target(src.getTarget())
 {
 	*this = src;
@@ -31,8 +31,16 @@ std::string PresidentialPardonForm::getTarget() const
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	(void)executor;
-	std::cout << "Shrubbery execute.\n";
+	try
+	{
+		checkBureaucrat(executor);
+
+		std::cout << _target << " has been pardoned by Zaphod Beeblebrox\n";
+	}
+	catch (std::exception & e)
+	{
+		throw;
+	}
 }
 
 PresidentialPardonForm & PresidentialPardonForm::operator=(PresidentialPardonForm::PresidentialPardonForm const & rhs)

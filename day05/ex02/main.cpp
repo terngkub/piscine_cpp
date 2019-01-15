@@ -2,7 +2,10 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
+/*
 void testBureaucrat()
 {
 	// Test constructor
@@ -56,7 +59,6 @@ void testBureaucrat()
 	}
 }
 
-/*
 void testForm()
 {
 	// Test constructor
@@ -117,11 +119,42 @@ void testForm()
 
 void testShrubberyCreationForm()
 {
-	ShrubberyCreationForm scf("home");
-	Bureaucrat exe(140, "abc");
+	ShrubberyCreationForm	scf("AAA");
+	RobotomyRequestForm		rrf("BBB");
+	PresidentialPardonForm	ppf("CCC");
 
-	exe.signForm(scf);
-	exe.executeForm(scf);
+	Bureaucrat				good(1, "Good");
+	Bureaucrat				bad(150, "Bad");
+
+	std::cout << "Fail to sign\n";
+	std::cout << "_____________________________\n";
+	bad.signForm(scf);
+	bad.signForm(rrf);
+	bad.signForm(ppf);
+
+	std::cout << "\nFail to Execute because the form isn't sign\n";
+	std::cout << "_____________________________\n";
+	good.executeForm(scf);
+	good.executeForm(rrf);
+	good.executeForm(ppf);
+
+	std::cout << "\nSuccess to sign\n";
+	std::cout << "_____________________________\n";
+	good.signForm(scf);
+	good.signForm(rrf);
+	good.signForm(ppf);
+
+	std::cout << "\nFail to Execute because the exec grade isn't enough\n";
+	std::cout << "_____________________________\n";
+	bad.executeForm(scf);
+	bad.executeForm(rrf);
+	bad.executeForm(ppf);
+
+	std::cout << "\nSuccess to execute form\n";
+	std::cout << "_____________________________\n";
+	good.executeForm(scf);
+	good.executeForm(rrf);
+	good.executeForm(ppf);
 }
 
 int main()

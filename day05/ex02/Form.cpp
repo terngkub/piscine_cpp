@@ -67,6 +67,14 @@ void Form::beSigned(Bureaucrat const & bureaucrat)
 		throw(GradeTooLowException());
 }
 
+void Form::checkBureaucrat(Bureaucrat const & bureaucrat) const
+{
+	if (!getSigned())
+		throw(NotSignedException());
+	if (bureaucrat.getGrade() <= _execGrade)
+		throw(GradeTooLowException());
+}
+
 Form::GradeTooHighException::GradeTooHighException()
 {
 }
@@ -113,6 +121,30 @@ Form::GradeTooLowException & Form::GradeTooLowException::operator=(Form::GradeTo
 const char * Form::GradeTooLowException::what() const throw()
 {
 	return "Grade too low";
+}
+
+Form::NotSignedException::NotSignedException()
+{
+}
+
+Form::NotSignedException::~NotSignedException() throw()
+{
+}
+
+Form::NotSignedException::NotSignedException(Form::NotSignedException const & src)
+{
+	*this = src;
+}
+
+Form::NotSignedException & Form::NotSignedException::operator=(Form::NotSignedException const & rhs)
+{
+	(void)rhs;
+	return *this;
+}
+
+const char * Form::NotSignedException::what() const throw()
+{
+	return "Form is not signed";
 }
 
 std::ostream & operator<<(std::ostream & o, Form const & rhs)

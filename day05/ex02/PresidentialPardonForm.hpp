@@ -11,6 +11,10 @@ public:
 	PresidentialPardonForm(std::string target);
 	~PresidentialPardonForm();
 
+	std::string getTarget() const;
+	
+	void execute(Bureaucrat const & executor) const;
+
 private:
 	std::string _target;
 

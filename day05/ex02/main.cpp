@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 void testBureaucrat()
 {
@@ -55,6 +56,7 @@ void testBureaucrat()
 	}
 }
 
+/*
 void testForm()
 {
 	// Test constructor
@@ -111,9 +113,19 @@ void testForm()
 		std::cout << "Got exception for sign: " << e.what() << "\n";
 	}
 }
+*/
+
+void testShrubberyCreationForm()
+{
+	ShrubberyCreationForm scf("home");
+	Bureaucrat exe(140, "abc");
+
+	exe.signForm(scf);
+	exe.executeForm(scf);
+}
 
 int main()
 {
-	testForm();
+	testShrubberyCreationForm();
 	return 0;
 }

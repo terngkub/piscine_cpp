@@ -31,6 +31,14 @@ std::string ShrubberyCreationForm::getTarget() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
+	/*
+	if (!getSigned())
+		throw(NotSignedException());
+	if (!hasEnoughExecGrade(executor))
+		throw(GradeTooLowException());
+		*/
+	checkBureaucrat(executor);
+	std::cout << "Shrubbery execute to "<< _target << "\n";
 }
 
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm::ShrubberyCreationForm const & rhs)

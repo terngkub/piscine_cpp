@@ -7,14 +7,17 @@
 class Mindopen
 {
 public:
-	Mindopen();
+	Mindopen(std::string filename);
+
 	void execute();
-	void addInstruction(IInstruction instruction);
+	void addInstruction(IInstruction * instruction);
 
 private:
+	Mindopen();
+
 	char _memory[30000];
 	char * _memoryPointer;
-	std::queue<IInstruction> _instructionQueue;
+	std::queue<IInstruction *> _instructionQueue;
 };
 
 #endif

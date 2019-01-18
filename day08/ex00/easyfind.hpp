@@ -9,7 +9,7 @@ typename T::iterator easyfind(T con, int n)
 {
 	typename T::iterator it = std::find(con.begin(), con.end(), n);
 	if (it == con.end())
-		throw NotFoundException();
+		throw std::runtime_error("value not found");
 	return it;
 }
 

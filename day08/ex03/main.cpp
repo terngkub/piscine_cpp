@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Mindopen.hpp"
-#include "IInstruction.hpp"
+#include "AInstruction.hpp"
 #include "Dot.hpp"
 #include "Plus.hpp"
 
@@ -13,14 +13,13 @@ int main(int argc, char ** argv)
 		return 1;
 	}
 	Mindopen mindopen(argv[1]);
-	
-
-	Plus * plus = new Plus();
-	Dot * dot = new Dot();
-
-	for (int i = 0; i < 33; i++)
-		mindopen.addInstruction(plus);
-	mindopen.addInstruction(dot);
-	mindopen.execute();
+	try
+	{
+		mindopen.execute();
+	}
+	catch(std::exception & e)
+	{
+		std::cout << e.what() << "\n";
+	}
 	return 0;
 }

@@ -1,14 +1,18 @@
 #ifndef DOT_HPP
 # define DOT_HPP
 
-#include "IInstruction.hpp"
+#include "AInstruction.hpp"
 
-class Dot : public IInstruction
+class Dot : public AInstruction
 {
 public:
 	Dot();
 	~Dot();
-	void execute(char * memoryPointer);
+	void execute(iterator & it, iterator & itb, iterator & ite, char * memory, int & index);
+
+private:
+	Dot(Dot const & src);
+	Dot & operator=(Dot const & rhs);
 };
 
 #endif

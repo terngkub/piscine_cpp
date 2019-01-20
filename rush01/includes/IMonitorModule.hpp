@@ -2,15 +2,14 @@
 # define IMONITORMODULE_HPP
 
 #include <string>
+#include "IMonitorDisplay.hpp"
 
 class IMonitorModule
 {
 public:
 	virtual ~IMonitorModule();
-	virtual std::string getInfo() = 0;
-
-private:
-
+	virtual void getInfo() = 0;
+	virtual void drawInfo(IMonitorDisplay * display) = 0;
 };
 
 #endif

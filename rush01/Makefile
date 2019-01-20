@@ -1,13 +1,16 @@
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-INCS = -I ~/.brew/include
+INCS = -I ~/.brew/include -I includes
 LIBS = -l ncurses -L ~/.brew/lib -l sfml-graphics -l sfml-window -l sfml-system
 RPATH = -Wl,-rpath,$$HOME/.brew/lib
 
 NAME = ft_gkrellm
 FILES = main.cpp Monitor.cpp \
-		IMonitorModule.cpp Dummy.cpp \
+		IMonitorModule.cpp Hostname.cpp OS.cpp DateTime.cpp CPU.cpp RAM.cpp Network.cpp\
 		IMonitorDisplay.cpp Shell.cpp Graphic.cpp\
+
+SRCS_DIR = srcs
+SRCS = $(addprefix $(SRCS_DIR)/,$(FILES))
 
 OBJS_DIR = objs
 OBJS = $(addprefix $(OBJS_DIR)/,$(FILES:%.cpp=%.o))
@@ -20,7 +23,7 @@ $(NAME): $(OBJS_DIR) $(OBJS)
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
-$(OBJS_DIR)/%.o: %.cpp
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	$(CC) $(CFLAGS) $(INCS) -c -o $@ $<
 
 clean:

@@ -11,11 +11,15 @@ class Graphic : public IMonitorDisplay
 public:
 	Graphic();
 	~Graphic();
-	char getInput();
+	bool isClose();
 	void putInfo(std::string str);
+	void editY(int y);
 	void render();
 
 private:
+	Graphic(Graphic const & src);
+	Graphic & operator=(Graphic const & rhs);
+
 	sf::RenderWindow 	_screen;
 	int					_y;
 };

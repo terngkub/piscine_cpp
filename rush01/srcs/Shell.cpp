@@ -11,7 +11,7 @@ Shell::Shell() :
 	keypad(stdscr, TRUE);
 	refresh();
 
-	_screen = newwin(30, 20, 0, 0);
+	_screen = newwin(100, 200, 0, 0);
 }
 
 Shell::~Shell()
@@ -19,16 +19,33 @@ Shell::~Shell()
 	endwin();
 }
 
-char Shell::getInput()
+Shell::Shell(Shell const & src)
 {
-	char c = getch();
-	return c;
+	static_cast<void>(src);
+}
+
+Shell & Shell::operator=(Shell const & rhs)
+{
+	static_cast<void>(rhs);
+	return *this;
+}
+
+bool Shell::isClose()
+{
+	if (getch() == 'q')
+		return true;
+	return false;
 }
 
 void Shell::putInfo(std::string str)
 {
 	mvwprintw(_screen, _y, 0, str.c_str());
-	_y += 5;
+	_y += 1;
+}
+
+void Shell::editY(int y)
+{
+	_y += y;
 }
 
 void Shell::render()

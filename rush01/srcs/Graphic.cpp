@@ -1,7 +1,7 @@
 #include "Graphic.hpp"
 
 Graphic::Graphic() :
-	_screen(sf::VideoMode(800, 600), "My window"),
+	_screen(sf::VideoMode(390, 700), "ft_gkrellm"),
 	_y(0)
 {
 	_screen.clear(sf::Color::Black);
@@ -13,28 +13,46 @@ Graphic::~Graphic()
 	_screen.close();
 }
 
-char Graphic::getInput()
+Graphic::Graphic(Graphic const & src)
+{
+	static_cast<void>(src);
+}
+
+Graphic & Graphic::operator=(Graphic const & rhs)
+{
+	static_cast<void>(rhs);
+	return *this;
+}
+
+bool Graphic::isClose()
 {
 	sf::Event event;
 	while (_screen.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
-			_screen.close();
+			return true;
+		if (event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			return true;
 	}
-	return 'a';
+	return false;
 }
 
 void Graphic::putInfo(std::string str)
 {
 	sf::Font font;
-	font.loadFromFile("Menlo.ttc");
+	font.loadFromFile("fonts/Menlo.ttc");
 
 	sf::Text text(str, font, 12);
 	text.setFillColor(sf::Color::White);
 	text.setPosition(15, _y);
 	_screen.draw(text);
 
-	_y += 60;
+	_y += 16;
+}
+
+void Graphic::editY(int y)
+{
+	_y += y;
 }
 
 void Graphic::render()

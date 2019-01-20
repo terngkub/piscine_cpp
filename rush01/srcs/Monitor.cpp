@@ -2,28 +2,45 @@
 #include "Monitor.hpp"
 #include "Graphic.hpp"
 #include "Shell.hpp"
-#include "Dummy.hpp"
+#include "Hostname.hpp"
+#include "OS.hpp"
+#include "DateTime.hpp"
+#include "CPU.hpp"
+#include "RAM.hpp"
+#include "Network.hpp"
 #include <iostream>
 
 Monitor::Monitor() :
-	_display(new Graphic()),
+	_display(new Shell()),
 	_frameRate(1)
 {
-	_module.push_back(new Dummy());
-	_module.push_back(new Dummy());
-	_module.push_back(new Dummy());
-	_module.push_back(new Dummy());
-	_module.push_back(new Dummy());
-	_module.push_back(new Dummy());
+}
+
+Monitor::Monitor(std::string mode) :
+	_frameRate(1)
+{
+	if (mode == "-graphic")
+		_display = new Graphic();
+	else
+		_display = new Shell();
+}
+
+Monitor::Monitor(Monitor const & src)
+{
+	static_cast<void>(src);
 }
 
 Monitor::~Monitor()
 {
-	delete _display;
 	for (std::vector<IMonitorModule *>::iterator it = _module.begin(); it != _module.end(); ++it)
-	{
 		delete (*it);
-	}
+	delete _display;
+}
+
+Monitor & Monitor::operator=(Monitor const & rhs)
+{
+	static_cast<void>(rhs);
+	return *this;
 }
 
 void Monitor::run()
@@ -31,14 +48,11 @@ void Monitor::run()
 	init();
 	while(true)
 	{
-		char c = _display->getInput();
-		if (c == 'q')
+		if (_display->isClose())
 			break;
 
-		//std::cout << "-";
 		if (shouldUpdate())
 		{
-			std::cout << "+";
 			update();
 			render();
 		}
@@ -47,9 +61,15 @@ void Monitor::run()
 
 void Monitor::init()
 {
+	_module.push_back(new Hostname(_display));
+	_module.push_back(new OS(_display));
+	_module.push_back(new DateTime(_display));
+	_module.push_back(new CPU(_display));
+	_module.push_back(new RAM(_display));
+	_module.push_back(new Network(_display));
+
 	gettimeofday(&_loopStart, NULL);
 	gettimeofday(&_loopStop, NULL);
-	update();
 	render();
 }
 
@@ -66,7 +86,8 @@ void Monitor::update()
 {
 	for (std::vector<IMonitorModule *>::iterator it = _module.begin(); it != _module.end(); ++it)
 	{
-		_display->putInfo((*it)->getInfo());
+		(*it)->getInfo();
+		(*it)->drawInfo(_display);
 	}
 }
 

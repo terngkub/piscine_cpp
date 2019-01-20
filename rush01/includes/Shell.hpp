@@ -10,11 +10,15 @@ class Shell : public IMonitorDisplay
 public:
 	Shell();
 	~Shell();
-	char getInput();
+	bool isClose();
 	void putInfo(std::string str);
+	void editY(int y);
 	void render();
 
 private:
+	Shell(Shell const & src);
+	Shell & operator=(Shell const & rhs);
+
 	WINDOW *	_screen;
 	int			_y;
 };

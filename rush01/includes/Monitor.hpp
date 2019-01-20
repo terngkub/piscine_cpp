@@ -9,11 +9,15 @@
 class Monitor
 {
 public:
-	Monitor();
+	Monitor(std::string mode);
 	~Monitor();
 	void run();
 
 private:
+	Monitor();
+	Monitor(Monitor const & src);
+	Monitor & operator=(Monitor const & rhs);
+
 	// base
 	std::vector<IMonitorModule *>	_module;
 	IMonitorDisplay	*				_display;

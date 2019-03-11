@@ -1,27 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Human.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 17:10:21 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/01 17:28:46 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Human.hpp"
 
-Human::Human(void) : brain(Brain())
+Human::Human() : _brain(Brain())
 {
 }
 
-Brain		Human::getBrain(void)
+std::string Human::identify() const
 {
-	return this->brain;
+	return _brain.identify();
 }
 
-std::string	Human::identify(void)
+Brain const &Human::getBrain()
 {
-	return this->brain.identify();
+	return _brain;
 }

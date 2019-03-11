@@ -1,35 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 11:21:08 by terng             #+#    #+#             */
-/*   Updated: 2018/04/26 11:42:25 by terng            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Pony.hpp"
 
-void	ponyOnTheHeap(void)
+void ponyOnTheHeap()
 {
-	Pony *pony = new Pony("Heap");
+	Pony *pony = new Pony("Pony on the heap");
 
-	pony->getName();
+	pony->announce();
 	delete pony;
 }
 
-void	ponyOnTheStack(void)
+void ponyOnTheStack()
 {
-	Pony pony = Pony("Stack");
+	Pony pony = Pony("Pony on the stack");
 
-	pony.getName();
+	pony.announce();
 }
 
-int	main(void)
+int main(void)
 {
 	ponyOnTheHeap();
 	ponyOnTheStack();
-	return (0);
+	return 0;
 }

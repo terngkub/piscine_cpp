@@ -69,7 +69,6 @@ void Mindopen::execute()
 	iterator ite = _instruction.end();
 	for (; it != ite; ++it)
 	{
-		//std::cout << (*it)->getType() << int(_memory[_index]) << " ";
 		try
 		{
 			(*it)->execute(it, itb, ite, _memory, _index);

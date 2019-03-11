@@ -31,6 +31,7 @@ void testSuperTrap()
 		<< "\nMax hit points: " << a.getMaxHitPoints()
 		<< "\nEnergy points: " << a.getEnergyPoints()
 		<< "\nMax energy points: " << a.getMaxEnergyPoints()
+		<< "\nLevel: " << a.getLevel()
 		<< "\nName: " << a.getName()
 		<< "\nMelee attack damage: " << a.getMeleeAttackDamage()
 		<< "\nRanged attack damage: " << a.getRangedAttackDamage()
@@ -73,6 +74,7 @@ void testSuperTrap()
 	FragTrap frag;
 	ScavTrap scav;
 	NinjaTrap ninja;
+	SuperTrap super;
 	a.ninjaShoebox(clap);
 	a.ninjaShoebox(frag);
 	a.ninjaShoebox(scav);
@@ -99,6 +101,18 @@ void testNinjaTrap()
 		<< "\nb's name: " << b.getName()
 		<< "\nc's name: " << c.getName()
 		<< "\nd's name: " << d.getName() << "\n\n";
+
+	// Attributes
+	std::cout
+		<< "Hit points: " << a.getHitPoints()
+		<< "\nMax hit points: " << a.getMaxHitPoints()
+		<< "\nEnergy points: " << a.getEnergyPoints()
+		<< "\nMax energy points: " << a.getMaxEnergyPoints()
+		<< "\nLevel: " << a.getLevel()
+		<< "\nName: " << a.getName()
+		<< "\nMelee attack damage: " << a.getMeleeAttackDamage()
+		<< "\nRanged attack damage: " << a.getRangedAttackDamage()
+		<< "\nArmor damage reduction: " << a.getArmorDamageReduction() << "\n\n";
 
 	// Attacks
 	a.rangedAttack("enemy1");
@@ -151,6 +165,18 @@ void testClapTrap()
 		<< "\nc's name: " << c.getName()
 		<< "\nd's name: " << d.getName() << "\n\n";
 
+	// Attributes
+	std::cout
+		<< "Hit points: " << a.getHitPoints()
+		<< "\nMax hit points: " << a.getMaxHitPoints()
+		<< "\nEnergy points: " << a.getEnergyPoints()
+		<< "\nMax energy points: " << a.getMaxEnergyPoints()
+		<< "\nLevel: " << a.getLevel()
+		<< "\nName: " << a.getName()
+		<< "\nMelee attack damage: " << a.getMeleeAttackDamage()
+		<< "\nRanged attack damage: " << a.getRangedAttackDamage()
+		<< "\nArmor damage reduction: " << a.getArmorDamageReduction() << "\n\n";
+
 	// Attacks
 	a.rangedAttack("enemy1");
 	a.meleeAttack("enemy2");
@@ -190,6 +216,18 @@ void testScavTrap()
 		<< "\nb's name: " << b.getName()
 		<< "\nc's name: " << c.getName()
 		<< "\nd's name: " << d.getName() << "\n\n";
+
+	// Attributes
+	std::cout
+		<< "Hit points: " << a.getHitPoints()
+		<< "\nMax hit points: " << a.getMaxHitPoints()
+		<< "\nEnergy points: " << a.getEnergyPoints()
+		<< "\nMax energy points: " << a.getMaxEnergyPoints()
+		<< "\nLevel: " << a.getLevel()
+		<< "\nName: " << a.getName()
+		<< "\nMelee attack damage: " << a.getMeleeAttackDamage()
+		<< "\nRanged attack damage: " << a.getRangedAttackDamage()
+		<< "\nArmor damage reduction: " << a.getArmorDamageReduction() << "\n\n";
 
 	// Attacks
 	a.rangedAttack("enemy1");
@@ -238,6 +276,18 @@ void testFragTrap()
 		<< "\nb's name: " << b.getName()
 		<< "\nc's name: " << c.getName()
 		<< "\nd's name: " << d.getName() << "\n\n";
+
+	// Attributes
+	std::cout
+		<< "Hit points: " << a.getHitPoints()
+		<< "\nMax hit points: " << a.getMaxHitPoints()
+		<< "\nEnergy points: " << a.getEnergyPoints()
+		<< "\nMax energy points: " << a.getMaxEnergyPoints()
+		<< "\nLevel: " << a.getLevel()
+		<< "\nName: " << a.getName()
+		<< "\nMelee attack damage: " << a.getMeleeAttackDamage()
+		<< "\nRanged attack damage: " << a.getRangedAttackDamage()
+		<< "\nArmor damage reduction: " << a.getArmorDamageReduction() << "\n\n";
 
 	// Attacks
 	a.rangedAttack("enemy1");

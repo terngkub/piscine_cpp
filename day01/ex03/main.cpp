@@ -1,21 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 15:36:40 by terng             #+#    #+#             */
-/*   Updated: 2018/05/01 16:20:27 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ZombieHorde.hpp"
 
-int	main(void)
+int main()
 {
-	ZombieHorde	horde(5);
-
-	horde.announce();
-	return (0);
+	ZombieHorde zh = ZombieHorde(5);
+	zh.announce();
+	return 0;
 }

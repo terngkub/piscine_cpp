@@ -2,7 +2,6 @@
 # define EASYFIND_HPP
 
 #include <algorithm>
-#include "NotFoundException.hpp"
 
 template<typename T>
 typename T::iterator easyfind(T con, int n)

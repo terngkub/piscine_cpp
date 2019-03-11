@@ -35,23 +35,34 @@ void copyTest()
 	ISpaceMarine *b = new AssaultTerminator;
 	ISpaceMarine *c = new TacticalMarine;
 	ISpaceMarine *d = new TacticalMarine;
+	ISpaceMarine *e = new AssaultTerminator;
 
-	Squad* sq1 = new Squad;
+	Squad* sq1 = new Squad();
 	sq1->push(a);
 	sq1->push(b);
 	sq1->push(c);
 	sq1->push(d);
+	std::cout << "\n";
+
 	for (int i = 0; i < sq1->getCount(); ++i)
 	{
 		ISpaceMarine* cur = sq1->getUnit(i);
 		cur->battleCry();
 	}
-	ISquad* sq2 = new Squad(*sq1);
+	std::cout << "\n";
+
+	Squad* sq2 = new Squad();
+	sq2->push(e);
+	*sq2 = *sq1;
+	std::cout << "\n";
+
 	for (int i = 0; i < sq2->getCount(); ++i)
 	{
 		ISpaceMarine* cur = sq2->getUnit(i);
 		cur->battleCry();
 	}
+	std::cout << "\n";
+
 	delete sq1;
 	delete sq2;
 }

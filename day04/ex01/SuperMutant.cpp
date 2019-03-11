@@ -1,31 +1,20 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   SuperMutant.cpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 13:29:17 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/20 18:37:33 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <iostream>
 #include "SuperMutant.hpp"
 
 SuperMutant::SuperMutant() : Enemy(170, "Super Mutant")
 {
-	std::cout << "Gaah. Me want smash heads !" << std::endl;
+	std::cout << "Gaaah. Me want smash heads !\n";
 }
 
 SuperMutant::SuperMutant(SuperMutant const & src)
 {
 	*this = src;
-	std::cout << "Gaah. Me want smash heads !" << std::endl;
+	std::cout << "Gaaah. Me want smash heads !\n";
 }
 
 SuperMutant::~SuperMutant()
 {
-	std::cout << "Aaargh ...";
+	std::cout << "Aaargh ...\n";
 }
 
 SuperMutant & SuperMutant::operator=(SuperMutant const & rhs)
@@ -35,8 +24,8 @@ SuperMutant & SuperMutant::operator=(SuperMutant const & rhs)
 	return *this;
 }
 
-void	SuperMutant::takeDamage(int damage)
+void SuperMutant::takeDamage(int damage)
 {
-	int hp = getHP() - damage + 3;
-	setHP(hp > 0 ? hp : 0);
+	int hp = getHp() - damage + 3;
+	setHp(hp > 0 ? hp : 0);
 }

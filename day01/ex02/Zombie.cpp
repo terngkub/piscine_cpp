@@ -1,43 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 14:04:16 by terng             #+#    #+#             */
-/*   Updated: 2018/05/01 16:18:47 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Zombie.hpp"
+#include <iostream>
 
-Zombie::Zombie(void)
+Zombie::Zombie() : _type("default_type"), _name("default_name")
 {
-	std::cout << "An unnammed zombie with a default type of walker whas born." << std::endl;
+	std::cout << "<" << _name << "(" << _type << ")> is created.\n";
 }
 
-Zombie::Zombie(std::string name, std::string type) : name(name), type(type)
+Zombie::Zombie(std::string type, std::string name) : _type(type), _name(name)
 {
-	std::cout << "<" << this->name << " (" << this->type << ")> has born." << std::endl;
+	std::cout << "<" << _name << "(" << _type << ")> is created.\n";
 }
 
-Zombie::~Zombie(void)
+Zombie::~Zombie()
 {
-	std::cout << "<" << this->name << " (" << this->type << ")> died." << std::endl;
+	std::cout << "<" << _name << "(" << _type << ")> is dead.\n";
 }
 
-void	Zombie::set_name(std::string name)
+void Zombie::setType(std::string type)
 {
-	this->name = name;
+	_type = type;
 }
 
-void	Zombie::set_type(std::string type)
+void Zombie::setName(std::string name)
 {
-	this->type = type;
+	_name = name;
 }
 
-void	Zombie::announce(void)
+void Zombie::announce() const
 {
-	std::cout << "<" << this->name << " (" << this->type << ")> Brainnnsss..." << std::endl;
+	std::cout << "<" << _name << "(" << _type << ")> Braiiiiiiinnnssss...\n";
 }

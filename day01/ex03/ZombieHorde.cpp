@@ -1,35 +1,24 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 15:55:56 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/01 16:21:46 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ZombieHorde.hpp"
+#include <iostream>
 
-ZombieHorde::ZombieHorde(int N)
+ZombieHorde::ZombieHorde(int N) : _size(N)
 {
-	std::string	names[5] = {"AAA", "BBB", "CCC", "DDD", "EEE"};
-	
-	this->zombies = new Zombie[N];
-	this->size = N;
-	
-	for (int i = 0; i < N; i++)
-		this->zombies[i].set_name(names[rand() % 5]);
+	std::cout << "A zombie horde of size " << _size << " is created.\n";
+	_zombies = new Zombie[N];
+
+	std::string name_array[] = {"AAA", "BBB", "CCC", "DDD", "EEE"};
+	for (int i = 0; i < _size; i++)
+		_zombies[i].setName(name_array[rand() % 5]);
 }
 
-ZombieHorde::~ZombieHorde(void)
+ZombieHorde::~ZombieHorde()
 {
-	delete [] this->zombies;
+	delete [] _zombies;
+	std::cout << "A zombie horde of size " << _size << " is destroyed.\n";
 }
 
-void	ZombieHorde::announce(void)
+void ZombieHorde::announce() const
 {
-	for (int i = 0; i < this->size; i++)
-		this->zombies[i].announce();
+	for (int i = 0; i < _size; i++)
+		_zombies[i].announce(); 
 }

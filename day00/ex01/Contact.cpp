@@ -5,27 +5,27 @@
 void	Contact::add()
 {
 	std::cout << "first name: ";
-	std::cin >> first_name;
+	getline(std::cin, first_name);
     std::cout << "last name: ";
-    std::cin >> last_name;
+    getline(std::cin, last_name);
     std::cout << "nickname: ";
-    std::cin >> nickname;
+    getline(std::cin, nickname);
     std::cout << "login: ";
-    std::cin >> login;
+    getline(std::cin, login);
     std::cout << "postal address: ";
-    std::cin >> postal_address;
+    getline(std::cin, postal_address);
     std::cout << "email address: ";
-    std::cin >> email_address;
+    getline(std::cin, email_address);
     std::cout << "phone number: ";
-    std::cin >> phone_number;
+    getline(std::cin, phone_number);
     std::cout << "birthday date: ";
-    std::cin >> birthday_date;
+    getline(std::cin, birthday_date);
     std::cout << "favorite meal: ";
-    std::cin >> favorite_meal;
+    getline(std::cin, favorite_meal);
     std::cout << "underwear color: ";
-    std::cin >> underwear_color;
+    getline(std::cin, underwear_color);
     std::cout << "darkest secret: ";
-    std::cin >> darkest_secret;
+    getline(std::cin, darkest_secret);
 }
 
 static void print_column(std::string str)

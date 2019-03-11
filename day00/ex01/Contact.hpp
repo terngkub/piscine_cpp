@@ -1,5 +1,7 @@
-#pragma once
-#include <string>
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
+
+# include <string>
 
 class Contact
 {
@@ -21,3 +23,5 @@ private:
 	std::string	underwear_color;
 	std::string	darkest_secret;
 };
+
+#endif

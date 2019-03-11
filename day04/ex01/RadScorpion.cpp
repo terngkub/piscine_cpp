@@ -1,33 +1,21 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   RadScorpion.cpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 18:35:15 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/20 18:40:40 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <iostream>
 #include "RadScorpion.hpp"
 
 RadScorpion::RadScorpion() : Enemy(80, "RadScorpion")
 {
-	std::cout << "* click click click *" << std::endl;
+	std::cout << "* click click click *\n";
 }
 
 RadScorpion::RadScorpion(RadScorpion const & src)
 {
 	*this = src;
-	std::cout << "* click click click *" << std::endl;
+	std::cout << "* click click click *\n";
 }
 
 RadScorpion::~RadScorpion()
 {
-	std::cout << "* SPROTCH *" << std::endl;
+	std::cout << "* SPROTCH *\n";
 }
-
 
 RadScorpion & RadScorpion::operator=(RadScorpion const & rhs)
 {
@@ -36,9 +24,8 @@ RadScorpion & RadScorpion::operator=(RadScorpion const & rhs)
 	return *this;
 }
 
-
-void	RadScorpion::takeDamage(int damage)
+void RadScorpion::takeDamage(int damage)
 {
-	int hp = getHP() - damage;
-	setHP(hp > 0 ? hp : 0);
+	int hp = getHp() - damage;
+	setHp(hp > 0 ? hp : 0);
 }

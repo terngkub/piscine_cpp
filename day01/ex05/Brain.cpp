@@ -1,24 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 16:47:40 by nkamolba          #+#    #+#             */
-/*   Updated: 2019/01/05 19:41:40 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Brain.hpp"
 #include <sstream>
 
-std::string	Brain::identify(void) const
+std::string Brain::identify() const
 {
-	std::ostringstream	adr;
-	std::string			str;
-
-	adr << (void const *)this;
-	str = adr.str();
-	return str;
+	std::stringstream ss;
+	ss << std::hex << this;
+	return ss.str();
 }

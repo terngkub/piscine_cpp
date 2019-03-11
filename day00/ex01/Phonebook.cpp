@@ -21,19 +21,21 @@ void	Phonebook::search() const
 		std::cout << "Phonebook is empty. Please ADD a contact.\n";
 		return ;
 	}
+
 	for (int i = 0; i < contact_nb; i++)
 		contact[i].preview(i);
 
 	std::cout << "Enter an index: ";
-	int index = -1;
-	std::cin >> index;
-	if (!std::cin)
+	std::string str;
+	getline(std::cin, str);
+	if (str.length() != 1 || str[0] < '0' || str[0] > '9')
 	{
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Wrong input.\n";
-	}
-	else if (index < 0 || index >= contact_nb)
+		std::cout << "Wrong input format.\n";
+		return ;
+	}	
+
+	int index = atoi(str.c_str());
+	if (index < 0 || index >= contact_nb)
 		std::cout << "Index out of range.\n";
 	else
 		contact[index].print();

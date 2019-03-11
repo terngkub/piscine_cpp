@@ -1,37 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Victim.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 18:05:08 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/11 00:06:51 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef VICTIM_HPP
+# define VICTIM_HPP
 
-#ifndef VICTIM_H
-# define VICTIM_H
-
-# include <iostream>
+# include <string>
 
 class Victim
 {
-	public:
-		Victim(void);
-		Victim(std::string name);
-		Victim(Victim const &src);
-		~Victim(void);
+public:
+	Victim();
+	Victim(std::string name);
+	Victim(Victim const & src);
+	~Victim();
+	Victim & operator=(Victim const & rhs);
 
-		Victim const	&operator=(Victim const &rhs);
+	std::string getName() const;
 
-		std::string		get_name(void) const;
-		virtual void	getPolymorphed(void) const;
+	virtual void getPolymorphed() const;
 
-	private:
-		std::string		name;
+protected:
+	std::string _name;
 };
 
-std::ostream	&operator<<(std::ostream &o, Victim const &rhs);
+std::ostream & operator<<(std::ostream & o, Victim const & rhs);
 
 #endif

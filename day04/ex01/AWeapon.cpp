@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   AWeapon.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 11:08:50 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/20 11:58:48 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "AWeapon.hpp"
 
 AWeapon::AWeapon() :
-	_name("Default"),
+	_name("Default name"),
 	_apcost(0),
 	_damage(0)
 {
@@ -46,25 +34,17 @@ AWeapon & AWeapon::operator=(AWeapon const & rhs)
 	return *this;
 }
 
-std::string		AWeapon::getName() const
+std::string AWeapon::getName() const
 {
 	return _name;
 }
 
-int				AWeapon::getAPCost() const
+int AWeapon::getAPCost() const
 {
 	return _apcost;
 }
 
-int				AWeapon::getDamage() const
+int AWeapon::getDamage() const
 {
 	return _damage;
-}
-
-std::ostream & operator<<(std::ostream & o, AWeapon const & rhs)
-{
-	o << "Name: " << rhs.getName() << std::endl
-		<< "APCost: " << rhs.getAPCost() << std::endl
-		<< "Damage: " << rhs.getDamage() << std::endl;
-	return o;
 }

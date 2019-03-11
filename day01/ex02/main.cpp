@@ -1,43 +1,57 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 15:36:40 by terng             #+#    #+#             */
-/*   Updated: 2018/05/01 16:23:50 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "Zombie.hpp"
 #include "ZombieEvent.hpp"
+#include <iostream>
 
-int	main(void)
+void testZombieConstructor()
 {
-	ZombieEvent	ze1;
-	ZombieEvent ze2;
-	Zombie*		zombies[5];
+	std::cout << "Test: Zombie constructor\n\n";
 
-	ze1.setZombieType("Walker");
-	ze2.setZombieType("Runner");
-	
-	zombies[0] = ze1.newZombie("First");
-	zombies[1] = ze2.newZombie("Second");
-	zombies[2] = new Zombie("Third", "Necromancer");
-	zombies[3] = ze1.randomChump();
-	zombies[4] = ze2.randomChump();
+	Zombie z1 = Zombie();
+	z1.announce();
+	std::cout << "\n";
 
-	for (int i = 0; i < 5; i++)
-		zombies[i]->announce();
-	
-	for (int i = 0; i < 5; i++)
-		delete zombies[i];
+	Zombie z2 = Zombie("walker", "Stack");
+	z2.announce();
+	std::cout << "\n";
 
-	return (0);
+	Zombie *z3 = new Zombie();
+	z3->announce();
+	delete z3;
+	std::cout << "\n";
+
+	Zombie *z4 = new Zombie("runner", "Heap");
+	z4->announce();
+	delete z4;
+	std::cout << "\n";
 }
 
+void testZombieEvent()
+{
+	std::cout << "Test: ZombieEvent\n\n";
 
+	ZombieEvent ze;
+	std::cout << "\n";
+	ze.setZombieType("crawler");
 
-	
+	Zombie *one = ze.newZombie("One");
+	one->announce();
+	delete one;
+	std::cout << "\n";
 
+	Zombie *two = ze.randomChump();
+	two->announce();
+	delete two;
+	std::cout << "\n";
+
+	Zombie *three = ze.randomChump();
+	three->announce();
+	delete two;
+	std::cout << "\n";
+}
+
+int main()
+{
+	testZombieConstructor();
+	std::cout << "\n\n";
+	testZombieEvent();
+	return 0;
+}

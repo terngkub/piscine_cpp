@@ -18,13 +18,14 @@ Squad::Squad(Squad const & src)
 	*this = src;
 }
 
-
 Squad & Squad::operator=(Squad const & rhs)
 {
 	if (this != &rhs)
 	{
 		if (_size > 0)
+		{
 			_clearList();
+		}
 		t_list * cur = rhs._first;
 		while (cur)
 		{

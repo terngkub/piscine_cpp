@@ -1,83 +1,78 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   NinjaTrap.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/09 00:35:30 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/09 00:46:03 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "NinjaTrap.hpp"
+#include <iostream>
 
-NinjaTrap::NinjaTrap(void) : ClapTrap()
+NinjaTrap::NinjaTrap() : ClapTrap()
 {
-	std::cout << "NinjaTrap default constructor called" << std::endl;
-
-	this->hit_points = 60;
-	this->max_hit_points = 60;
-	this->energy_points = 120;
-	this->max_energy_points = 120;
-	this->level = 1;
-	this->melee_attack_damage = 60;
-	this->ranged_attack_damage = 5;
-	this->armor_damage_reduction = 0;
+	_name = "Default";
+	_hitPoints = 60;
+	_maxHitPoints = 60;
+	_energyPoints = 120;
+	_maxEnergyPoints = 120;
+	_level = 1;
+	_meleeAttackDamage = 60;
+	_rangedAttackDamage = 5;
+	_armorDamageReduction = 0;
+	std::cout << "NinjaTrap default constructor called\n";
 }
 
 NinjaTrap::NinjaTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "NinjaTrap name constructor called" << std::endl;
-
-	this->hit_points = 60;
-	this->max_hit_points = 60;
-	this->energy_points = 120;
-	this->max_energy_points = 120;
-	this->level = 1;
-	this->melee_attack_damage = 60;
-	this->ranged_attack_damage = 5;
-	this->armor_damage_reduction = 0;
+	_name = name;
+	_hitPoints = 60;
+	_maxHitPoints = 60;
+	_energyPoints = 120;
+	_maxEnergyPoints = 120;
+	_level = 1;
+	_meleeAttackDamage = 60;
+	_rangedAttackDamage = 5;
+	_armorDamageReduction = 0;
+	std::cout << "NinjaTrap name constructor called\n";
 }
 
-NinjaTrap::NinjaTrap(NinjaTrap const &src) : ClapTrap(src)
+NinjaTrap::NinjaTrap(NinjaTrap const & src) : ClapTrap(src)
 {
-	std::cout << "NinjaTrap copy constructor called" << std::endl;
+	std::cout << "NinjaTrap copy constructor called\n";
 }
 
-NinjaTrap::~NinjaTrap(void)
+NinjaTrap::~NinjaTrap()
 {
-	std::cout << "NinjaTrap destructor called" << std::endl;
+	std::cout << "NinjaTrap destructor called\n";
 }
 
-void	NinjaTrap::ninjaShoebox(ClapTrap const &trap) const
+NinjaTrap & NinjaTrap::operator=(NinjaTrap const & rhs)
 {
-	std::cout << "ClapTrap "
-		<< trap.get_name()
-		<< "was shoeboxing (???) by ninja."
-		<< std::endl;
+	std::cout << "NinjaTrap assignation operator called\n";
+	if (this != &rhs)
+	{
+		_name = rhs._name;
+		_hitPoints = rhs._hitPoints;
+		_maxHitPoints = rhs._maxHitPoints;
+		_energyPoints = rhs._energyPoints;
+		_maxEnergyPoints = rhs._maxEnergyPoints;
+		_level = rhs._level;
+		_meleeAttackDamage = rhs._meleeAttackDamage;
+		_rangedAttackDamage = rhs._rangedAttackDamage;
+		_armorDamageReduction = rhs._armorDamageReduction;
+	}
+	return *this;
 }
 
-void	NinjaTrap::ninjaShoebox(FragTrap const &trap) const
+void NinjaTrap::ninjaShoebox(ClapTrap const & trap) const
 {
-	std::cout << "FragTrap "
-		<< trap.get_name()
-		<< "was shoeboxing (???) by ninja."
-		<< std::endl;
+	std::cout << "CrapTrap " << trap.getName() << " was shoeboxing ??? by ninja.\n";
 }
 
-void	NinjaTrap::ninjaShoebox(ScavTrap const &trap) const
+void NinjaTrap::ninjaShoebox(FragTrap const & trap) const
 {
-	std::cout << "ScavTrap "
-		<< trap.get_name()
-		<< "was shoeboxing (???) by ninja."
-		<< std::endl;
+	std::cout << "FragTrap " << trap.getName() << " was shoeboxing ??? by ninja.\n";
 }
 
-void	NinjaTrap::ninjaShoebox(NinjaTrap const &trap) const
+void NinjaTrap::ninjaShoebox(ScavTrap const & trap) const
 {
-	std::cout << "NinjaTrap "
-		<< trap.get_name()
-		<< "was shoeboxing (???) by ninja."
-		<< std::endl;
+	std::cout << "ScavTrap " << trap.getName() << " was shoeboxing ??? by ninja.\n";
+}
+
+void NinjaTrap::ninjaShoebox(NinjaTrap const & trap) const
+{
+	std::cout << "NinjaTrap " << trap.getName() << " was shoeboxing ??? by ninja.\n";
 }

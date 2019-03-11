@@ -1,29 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Pony.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 11:35:13 by terng             #+#    #+#             */
-/*   Updated: 2018/04/26 11:45:46 by terng            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Pony.hpp"
+#include <iostream>
 
 Pony::Pony(std::string name)
+: _name(name)
 {
-	this->name = name;
-	std::cout << "Pony " << this->name << " is born." << std::endl;
+	std::cout << _name << " was born.\n";
 }
 
-Pony::~Pony(void)
+Pony::~Pony()
 {
-	std::cout << "Pony " << this->name << " died." << std::endl;
+	std::cout << _name << " was dead.\n";
 }
 
-void	Pony::getName(void)
+void Pony::announce() const
 {
-	std::cout << "My name is " << this->name << std::endl;
+	std::cout << "My name is " << _name << "\n";
 }

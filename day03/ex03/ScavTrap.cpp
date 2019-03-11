@@ -1,58 +1,65 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/08 10:31:20 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/09 00:47:55 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ScavTrap.hpp"
+#include <iostream>
 
-ScavTrap::ScavTrap(void) : ClapTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
-	std::cout << "ScavTrap default constructor called" << std::endl;
-
-	this->hit_points = 100;
-	this->max_hit_points = 100;
-	this->energy_points = 50;
-	this->max_energy_points = 50;
-	this->level = 1;
-	this->melee_attack_damage = 20;
-	this->ranged_attack_damage = 15;
-	this->armor_damage_reduction = 3;
+	_name = "Default";
+	_hitPoints = 100;
+	_maxHitPoints = 100;
+	_energyPoints = 50;
+	_maxEnergyPoints = 50;
+	_level = 1;
+	_meleeAttackDamage = 20;
+	_rangedAttackDamage = 15;
+	_armorDamageReduction = 3;
+	std::cout << "ScavTrap default constructor called\n";
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "ScavTrap name constructor called" << std::endl;
-
-	this->hit_points = 100;
-	this->max_hit_points = 100;
-	this->energy_points = 50;
-	this->max_energy_points = 50;
-	this->level = 1;
-	this->melee_attack_damage = 20;
-	this->ranged_attack_damage = 15;
-	this->armor_damage_reduction = 3;
+	_name = name;
+	_hitPoints = 100;
+	_maxHitPoints = 100;
+	_energyPoints = 50;
+	_maxEnergyPoints = 50;
+	_level = 1;
+	_meleeAttackDamage = 20;
+	_rangedAttackDamage = 15;
+	_armorDamageReduction = 3;
+	std::cout << "ScavTrap name constructor called\n";
 }
 
-ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap(src)
+ScavTrap::ScavTrap(ScavTrap const & src) : ClapTrap(src)
 {
-	std::cout << "ScavTrap copy constructor called" << std::endl;
+	std::cout << "ScavTrap copy constructor called\n";
 }
 
-ScavTrap::~ScavTrap(void)
+ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap destructor called" << std::endl;
+	std::cout << "ScavTrap destructor called\n";
 }
 
-void		ScavTrap::challengeNewcommer(void)
+ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
 {
-	std::string challenge[5] = {
+	std::cout << "ScavTrap assignation operator called\n";
+	if (this != &rhs)
+	{
+		_name = rhs._name;
+		_hitPoints = rhs._hitPoints;
+		_maxHitPoints = rhs._maxHitPoints;
+		_energyPoints = rhs._energyPoints;
+		_maxEnergyPoints = rhs._maxEnergyPoints;
+		_level = rhs._level;
+		_meleeAttackDamage = rhs._meleeAttackDamage;
+		_rangedAttackDamage = rhs._rangedAttackDamage;
+		_armorDamageReduction = rhs._armorDamageReduction;
+	}
+	return *this;
+}
+
+void ScavTrap::challengeNewcomer() const
+{
+	std::string	challenge[5] = {
 		"SHOOT !!!",
 		"DANCE !!!",
 		"SLEEP !!!",
@@ -60,24 +67,8 @@ void		ScavTrap::challengeNewcommer(void)
 		"GO AWAY !!!"
 	};
 
-	std::cout << "ScavTrap ";
-	std::cout << this->name;
-	std::cout << ": ";
-	std::cout << challenge[rand() % 5];
-	std::cout << std::endl;
-}
-
-std::ostream	&operator<<(std::ostream &o, ScavTrap const &rhs)
-{
-	o << "ScavTrap" << std::endl;
-	o << "Name: " << rhs.get_name() << std::endl;
-	o << "Hit points: " << rhs.get_hit_points() << std::endl;
-	o << "Max hit points: " << rhs.get_max_hit_points() << std::endl;
-	o << "Energy points: " << rhs.get_energy_points() << std::endl;
-	o << "Max energy points: " << rhs.get_max_energy_points() << std::endl;
-	o << "Level: " << rhs.get_level() << std::endl;
-	o << "Melee attack damage: " << rhs.get_melee_attack_damage() << std::endl;
-	o << "Ranged attack damage: " << rhs.get_ranged_attack_damage() << std::endl;
-	o << "Armor damage reduction: " << rhs.get_armor_damage_reduction();
-	return (o);
+	std::cout
+		<< "SC4V-TP " << _name
+		<< ": " << challenge[rand() % 5] 
+		<< " !\n";
 }

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
 #include "Contact.hpp"
 
 class Phonebook
@@ -12,3 +14,5 @@ private:
 	Contact	contact[8];
 	int		contact_nb;
 };
+
+#endif

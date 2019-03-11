@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Enemy.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 13:22:55 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/20 18:30:31 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Enemy.hpp"
 
 Enemy::Enemy() :
 	_hp(0),
-	_type("Default")
+	_type("Default type")
 {
 }
 
@@ -43,24 +31,17 @@ Enemy & Enemy::operator=(Enemy const & rhs)
 	return *this;
 }
 
-int			Enemy::getHP() const
+int Enemy::getHp() const
 {
 	return _hp;
 }
 
-std::string	Enemy::getType() const
+std::string Enemy::getType() const
 {
 	return _type;
 }
 
-void		Enemy::setHP(int hp)
+void Enemy::setHp(int hp)
 {
 	_hp = hp;
-}
-
-std::ostream & operator<<(std::ostream & o, Enemy const & rhs)
-{
-	o << "HP: " << rhs.getHP() << std::endl
-		<< "Type: " << rhs.getType() << std::endl;
-	return o;
 }

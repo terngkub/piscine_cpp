@@ -1,31 +1,25 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/05/05 18:53:18 by nkamolba          #+#    #+#              #
-#    Updated: 2018/05/05 18:54:05 by nkamolba         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC = clang++
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = cato9tails
-CLANG = clang++
-FLAG = -Wall -Wextra -Werror
-FILE = main.cpp
-OBJ = $(FILE:%.cpp=%.o)
+FILES = main.cpp
+
+OBJS_DIR = objs
+OBJS = $(addprefix $(OBJS_DIR)/, $(FILES:%.cpp=%.o))
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
-	$(CLANG) $(FLAG) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS_DIR) $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
-%.o: %.cpp
-	$(CLANG) $(FLAG) -o $@ -c $<
+$(OBJS_DIR):
+	mkdir -p objs
+
+$(OBJS_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
+	rm -rf objs
 
 fclean: clean
 	rm -f $(NAME)

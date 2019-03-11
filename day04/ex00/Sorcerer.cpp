@@ -1,65 +1,59 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Sorcerer.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 18:14:17 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/11 00:07:35 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <iostream>
 #include "Sorcerer.hpp"
 
-Sorcerer::Sorcerer(void) : name("NAME"), title("TITLE")
+Sorcerer::Sorcerer() :
+_name("Default name"),
+_title("Default title")
 {
-	std::cout << this->name << ", " << this->title << ", is born !" << std::endl;
+	std::cout << _name << ", " << _title << ", is born !\n";
 }
 
-Sorcerer::Sorcerer(std::string name, std::string title) : name(name), title(title)
+Sorcerer::Sorcerer(std::string name, std::string title) :
+_name(name),
+_title(title)
 {
-	std::cout << this->name << ", " << this->title << ", is born !" << std::endl;
+	std::cout << _name << ", " << _title << ", is born !\n";
 }
 
-Sorcerer::Sorcerer(Sorcerer const &src)
+Sorcerer::Sorcerer(Sorcerer const & src) :
+_name(src._name),
+_title(src._title)
 {
-	*this = src;	
-	std::cout << this->name << ", " << this->title << ", is born !" << std::endl;
+	std::cout << _name << ", " << _title << ", is born !\n";
 }
 
-Sorcerer::~Sorcerer(void)
+Sorcerer::~Sorcerer()
 {
-	std::cout << this->name << ", " << this->title << ", is dead. Consequences will never be the same !" << std::endl;
+	std::cout << _name << ", " << _title << ", is dead. Consequences will never be the same !\n";
 }
 
-Sorcerer const	&Sorcerer::operator=(Sorcerer const &rhs)
+Sorcerer & Sorcerer::operator=(Sorcerer const & rhs)
 {
 	if (this != &rhs)
 	{
-		this->name = rhs.name;
-		this->title = rhs.title;
+		_name = rhs._name;
+		_title = rhs._title;
 	}
-	return (*this);
+	return *this;
 }
 
-std::string		Sorcerer::get_name(void) const
+std::string Sorcerer::getName() const
 {
-	return (this->name);
+	return _name;
 }
 
-std::string		Sorcerer::get_title(void) const
+std::string Sorcerer::getTitle() const
 {
-	return (this->title);
+	return _title;
 }
 
-void			Sorcerer::polymorph(Victim const &target) const
+void Sorcerer::polymorph(Victim const & victim) const
 {
-	target.getPolymorphed();
+	victim.getPolymorphed();
 }
 
-std::ostream	&operator<<(std::ostream &o, Sorcerer const &rhs)
+std::ostream & operator<<(std::ostream & o, Sorcerer const & rhs)
 {
-	o << "I am " << rhs.get_name() << ", " << rhs.get_title() << ", and I like ponies !" << std::endl;
-	return (o);
+	o << "I am " << rhs.getName() << ", " << rhs.getTitle() << ", and I like ponies !\n";
+	return o;
 }

@@ -68,7 +68,7 @@ void FragTrap::vaulthunter_dot_exe(std::string const & target)
 	};
 
 	if (_energyPoints < 25)
-		std::cout << "FR4G-TP " << _name << "tries to use vaulthunter_dot_exe but doesn't have enough energy.\n";
+		std::cout << "FR4G-TP " << _name << " tries to use vaulthunter_dot_exe but doesn't have enough energy.\n";
 	else
 	{
 		std::cout

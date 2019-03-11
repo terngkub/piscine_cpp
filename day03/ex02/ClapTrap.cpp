@@ -1,188 +1,160 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/08 10:31:20 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/09 00:47:12 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ClapTrap.hpp"
+#include <iostream>
 
-ClapTrap::ClapTrap(void) :
-	hit_points(100),
-	max_hit_points(100),
-	energy_points(100),
-	max_energy_points(100),
-	level(1),
-	name("Default"),
-	melee_attack_damage(30),
-	ranged_attack_damage(20),
-	armor_damage_reduction(5)
+ClapTrap::ClapTrap() :
+_name("Default"),
+_hitPoints(100),
+_maxHitPoints(100),
+_energyPoints(100),
+_maxEnergyPoints(100),
+_level(1),
+_meleeAttackDamage(30),
+_rangedAttackDamage(20),
+_armorDamageReduction(5)
 {
-	std::cout << "ClapTrap default constructor called" << std::endl;
+	std::cout << "ClapTrap default constructor called\n";
 }
 
 ClapTrap::ClapTrap(std::string name) :
-	hit_points(100),
-	max_hit_points(100),
-	energy_points(100),
-	max_energy_points(100),
-	level(1),
-	name(name),
-	melee_attack_damage(30),
-	ranged_attack_damage(20),
-	armor_damage_reduction(5)
+_name(name),
+_hitPoints(100),
+_maxHitPoints(100),
+_energyPoints(100),
+_maxEnergyPoints(100),
+_level(1),
+_meleeAttackDamage(30),
+_rangedAttackDamage(20),
+_armorDamageReduction(5)
 {
-	std::cout << "ClapTrap name constructor called" << std::endl;
+	std::cout << "ClapTrap name constructor called\n";
 }
 
-ClapTrap::ClapTrap(ClapTrap const &src)
+ClapTrap::ClapTrap(ClapTrap const & src) :
+_name(src._name),
+_hitPoints(src._hitPoints),
+_maxHitPoints(src._maxHitPoints),
+_energyPoints(src._energyPoints),
+_maxEnergyPoints(src._maxEnergyPoints),
+_level(src._level),
+_meleeAttackDamage(src._meleeAttackDamage),
+_rangedAttackDamage(src._rangedAttackDamage),
+_armorDamageReduction(src._armorDamageReduction)
 {
-	std::cout << "ClapTrap copy constructor called" << std::endl;
-	*this = src;
+	std::cout << "ClapTrap copy constructor called\n";
 }
 
-ClapTrap::~ClapTrap(void)
+ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap destructor called" << std::endl;
+	std::cout << "ClapTrap destructor called\n";
 }
 
-ClapTrap	&ClapTrap::operator=(ClapTrap const &rhs)
+ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 {
-	std::cout << "ClapTrap assignation operator called" << std::endl;
+	std::cout << "ClapTrap assignation operator called\n";
 	if (this != &rhs)
 	{
-		this->hit_points = rhs.hit_points;
-		this->max_hit_points = rhs.max_hit_points;
-		this->energy_points = rhs.energy_points;
-		this->max_energy_points = rhs.max_energy_points;
-		this->level = rhs.level;
-		this->name = rhs.name;
-		this->melee_attack_damage = rhs.melee_attack_damage;
-		this->ranged_attack_damage = rhs.ranged_attack_damage;
-		this->armor_damage_reduction =  rhs.armor_damage_reduction;
+		_name = rhs._name;
+		_hitPoints = rhs._hitPoints;
+		_maxHitPoints = rhs._maxHitPoints;
+		_energyPoints = rhs._energyPoints;
+		_maxEnergyPoints = rhs._maxEnergyPoints;
+		_level = rhs._level;
+		_meleeAttackDamage = rhs._meleeAttackDamage;
+		_rangedAttackDamage = rhs._rangedAttackDamage;
+		_armorDamageReduction = rhs._armorDamageReduction;
 	}
 	return *this;
 }
 
-void		ClapTrap::rangedAttack(std::string const &target)
+void ClapTrap::rangedAttack(std::string const & target)
 {
-	std::cout << "ClapTrap ";
-	std::cout << this->name;
-	std::cout << " attacks ";
-	std::cout << target;
-	std::cout << " at range, causing ";
-	std::cout << this->ranged_attack_damage;
-	std::cout << " points of damage !";
-	std::cout << std::endl;
+	std::cout
+		<< "CL4P-TP " << _name
+		<< " attacks " << target
+		<< " at range, causing " << _rangedAttackDamage
+		<< " points of damage !\n";
 }
 
-void		ClapTrap::meleeAttack(std::string const &target)
+void ClapTrap::meleeAttack(std::string const & target)
 {
-	std::cout << "ClapTrap ";
-	std::cout << this->name;
-	std::cout << " attacks ";
-	std::cout << target;
-	std::cout << " at melee, causing ";
-	std::cout << this->melee_attack_damage;
-	std::cout << " points of damage !";
-	std::cout << std::endl;
+	std::cout
+		<< "CL4P-TP " << _name
+		<< " attacks " << target
+		<< " at melee, causing " << _meleeAttackDamage 
+		<< " points of damage !\n";
 }
 
-void		ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (this->hit_points - ((int)amount - this->armor_damage_reduction) < 0)
-		this->hit_points = 0;
+	unsigned int damage = amount - _armorDamageReduction;
+
+	if (_hitPoints > damage)
+		_hitPoints -= damage;
 	else
-		this->hit_points -= (amount - this->armor_damage_reduction);
+		_hitPoints = 0;
 
-	std::cout << "ClapTrap ";
-	std::cout << this->name;
-	std::cout << " takes damage of ";
-	std::cout << amount;
-	std::cout << ", hit points left ";
-	std::cout << this->hit_points;
-	std::cout << ".";
-	std::cout << std::endl;
+	std::cout
+		<< "CL4P-TP " << _name
+		<< " takes after-armor damage of " << damage
+		<< ", hit points left " << _hitPoints
+		<< ".\n";
 }
 
-void		ClapTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->hit_points + amount > this->max_hit_points)
-		this->hit_points = this->max_hit_points;
+	if (_hitPoints + amount < _maxHitPoints)
+		_hitPoints += amount;
 	else
-		this->hit_points += amount;
+		_hitPoints = _maxHitPoints;
 
-	std::cout << "ClapTrap ";
-	std::cout << this->name;
-	std::cout << " is repaired by ";
-	std::cout << amount;
-	std::cout << ", hit points left ";
-	std::cout << this->hit_points;
-	std::cout << ".";
-	std::cout << std::endl;
+	std::cout
+		<< "CL4P-TP " << _name
+		<< " is repaired by " << amount
+		<< ", hit points left " << _hitPoints
+		<< ".\n";
 }
 
-std::string		ClapTrap::get_name(void) const
+std::string ClapTrap::getName() const
 {
-	return (this->name);
+	return _name;
 }
 
-int				ClapTrap::get_hit_points(void) const
+unsigned int ClapTrap::getHitPoints() const
 {
-	return (this->hit_points);
+	return _hitPoints;
 }
 
-int				ClapTrap::get_max_hit_points(void) const
+unsigned int ClapTrap::getMaxHitPoints() const
 {
-	return (this->max_hit_points);
+	return _maxHitPoints;
 }
 
-int				ClapTrap::get_energy_points(void) const
+unsigned int ClapTrap::getEnergyPoints() const
 {
-	return (this->energy_points);
+	return _energyPoints;
 }
 
-int				ClapTrap::get_max_energy_points(void) const
+unsigned int ClapTrap::getMaxEnergyPoints() const
 {
-	return (this->max_energy_points);
+	return _maxEnergyPoints;
 }
 
-int				ClapTrap::get_level(void) const
+unsigned int ClapTrap::getLevel() const
 {
-	return (this->level);
+	return _level;
 }
 
-int				ClapTrap::get_melee_attack_damage(void) const
+unsigned int ClapTrap::getMeleeAttackDamage() const
 {
-	return (this->melee_attack_damage);
+	return _meleeAttackDamage;
 }
 
-int				ClapTrap::get_ranged_attack_damage(void) const
+unsigned int ClapTrap::getRangedAttackDamage() const
 {
-	return (this->ranged_attack_damage);
+	return _rangedAttackDamage;
 }
 
-int				ClapTrap::get_armor_damage_reduction(void) const
+unsigned int ClapTrap::getArmorDamageReduction() const
 {
-	return (this->armor_damage_reduction);
-}
-
-std::ostream	&operator<<(std::ostream &o, ClapTrap const &rhs)
-{
-	o << "ClapTrap" << std::endl;
-	o << "Name: " << rhs.get_name() << std::endl;
-	o << "Hit points: " << rhs.get_hit_points() << std::endl;
-	o << "Max hit points: " << rhs.get_max_hit_points() << std::endl;
-	o << "Energy points: " << rhs.get_energy_points() << std::endl;
-	o << "Max energy points: " << rhs.get_max_energy_points() << std::endl;
-	o << "Level: " << rhs.get_level() << std::endl;
-	o << "Melee attack damage: " << rhs.get_melee_attack_damage() << std::endl;
-	o << "Ranged attack damage: " << rhs.get_ranged_attack_damage() << std::endl;
-	o << "Armor damage reduction: " << rhs.get_armor_damage_reduction();
-	return (o);
+	return _armorDamageReduction;
 }

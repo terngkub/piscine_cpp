@@ -1,63 +1,59 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 18:44:40 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/04 20:45:53 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	// check parameter number
+	// check number of arguments
 	if (argc != 4)
 	{
-		std::cout << "Wrong parameter number" << std::endl;
-		return (1);
+		std::cerr << "Usage: ./replace [filename] [s1] [s2]\n";
+		return 1;
 	}
+
+	std::string filename(argv[1]);
+	std::string s1(argv[2]);
+	std::string s2(argv[3]);
 
 	// check empty string
-	std::string		filename(argv[1]);
-	std::string		str1(argv[2]);
-	std::string		str2(argv[3]);
-
-	if (filename.empty() || str1.empty() || str2.empty())
+	if (filename.empty() || s1.empty())
 	{
-		std::cout << "At least one of the input is an empty string" << std::endl;
-		return (1);
+		std::cerr << "Filename and s1 can't be empty\n";
+		return 1;
 	}
 
-	// check input file
-	std::ifstream	input_file(filename);
-
+	// open input file
+	std::ifstream input_file(filename);
 	if (input_file.fail())
 	{
-		std::cout << "Can't open input file" << std::endl;
-		return (1);
+		std::cerr << "Can't open input file.\n";
+		return 1;
 	}
 
-	std::ofstream	output_file(filename + ".replace");
-	std::string		line;
-	std::size_t		position;
+	// open output file
+	std::ofstream output_file(filename + ".replace");
+	if (output_file.fail())
+	{
+		std::cerr << "Can't open output file.\n";
+		return 1;
+	}
+
+	// read, search, replace and write
+	std::string line;
+	std::size_t position;
 
 	while (getline(input_file, line))
 	{
-		position = line.find(str1);
+		position = line.find(s1);
 		while (position != std::string::npos)
 		{
-			line.replace(position, str1.size(), str2);
-			position = line.find(str1, position + str2.size());
+			line.replace(position, s1.size(), s2);
+			position = line.find(s1, position + s2.size());
 		}
-		output_file << line << std::endl;
+		output_file << line << "\n";
 	}
 
+	// close files
 	input_file.close();
 	output_file.close();
-	return (0);
+	return 0;
 }

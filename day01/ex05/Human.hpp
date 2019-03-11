@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Human.hpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 17:10:32 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/01 17:29:25 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef HUMAN_HPP
 # define HUMAN_HPP
 
@@ -17,16 +5,13 @@
 
 class Human
 {
-	public:
+public:
+	Human();
+	std::string	identify() const;
+	Brain const	&getBrain();
 
-		Human(void);
-
-		Brain		getBrain(void);
-		std::string	identify(void);
-
-	private:
-
-		Brain const	brain;
+private:
+	Brain const _brain;
 };
 
 #endif

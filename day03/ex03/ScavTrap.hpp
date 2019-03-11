@@ -1,31 +1,19 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/08 10:23:13 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/09 00:47:54 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-#ifndef SCAVTRAP_H
-# define SCAVTRAP_H
-
+# include <string>
 # include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
 {
-	public:
-		ScavTrap(void);
-		ScavTrap(std::string name);
-		ScavTrap(ScavTrap const &src);
-		~ScavTrap(void);
+public:
+	ScavTrap();
+	ScavTrap(std::string name);
+	ScavTrap(ScavTrap const & src);
+	~ScavTrap();
+	ScavTrap & operator=(ScavTrap const & rhs);
 
-		void		challengeNewcommer(void);
+	void challengeNewcomer() const;
 };
-
-std::ostream		&operator<<(std::ostream &o, ScavTrap const &rhs);
 
 #endif

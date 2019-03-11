@@ -1,31 +1,25 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/05/01 18:40:06 by nkamolba          #+#    #+#              #
-#    Updated: 2018/05/01 18:41:19 by nkamolba         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC = clang++
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = replace
-CLANG = clang++
-FLAG = -Wall -Wextra -Werror
-FILE = main.cpp
-OBJ = $(FILE:%.cpp=%.o)
+FILES = main.cpp
+
+OBJS_DIR = objs
+OBJS = $(addprefix $(OBJS_DIR)/,$(FILES:%.cpp=%.o))
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
-	$(CLANG) $(FLAG) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS_DIR) $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
-%.o: %.cpp
-	$(CLANG) $(FLAG) -o $@ -c $<
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
+$(OBJS_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)

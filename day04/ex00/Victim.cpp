@@ -1,58 +1,50 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Victim.cpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <nkamolba@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 19:06:02 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/05/11 00:09:23 by nkamolba         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <iostream>
 #include "Victim.hpp"
 
-Victim::Victim(void)
+Victim::Victim() :
+_name("Default name")
 {
-	std::cout << "Some random victim called " << this->name << " just popped !" << std::endl;
+	std::cout << "Some random victim called " << _name << " just popped !\n";
 }
 
-Victim::Victim(std::string name) : name(name)
+Victim::Victim(std::string name) :
+_name(name)
 {
-	std::cout << "Some random victim called " << this->name << " just popped !" << std::endl;
+	std::cout << "Some random victim called " << _name << " just popped !\n";
 }
 
-Victim::Victim(Victim const &src)
+Victim::Victim(Victim const & src) :
+_name(src._name)
 {
-	*this = src;
-	std::cout << "Some random victim called " << this->name << " just popped !" << std::endl;
+	std::cout << "Some random victim called " << _name << " just popped !\n";
 }
 
-Victim::~Victim(void)
+Victim::~Victim()
 {
-	std::cout << "Victim " << this->name << " just died for no apparent reason !" << std::endl;
-
+	std::cout << "Victim " << _name << " just died for no apparent reason !\n";
 }
 
-Victim const	&Victim::operator=(Victim const &rhs)
+Victim & Victim::operator=(Victim const & rhs)
 {
 	if (this != &rhs)
-		this->name = rhs.name;
-	return (*this);
+	{
+		this->_name = rhs._name;
+	}
+	return *this;
 }
 
-std::string		Victim::get_name(void) const
+std::string Victim::getName() const
 {
-	return (this->name);
+	return _name;
 }
 
-void			Victim::getPolymorphed(void) const
+void Victim::getPolymorphed() const
 {
-	std::cout << this->name << " has been turned into a cute little sheep !" << std::endl;
+	std::cout << _name << " has been turned into a cute little sheep !\n";
 }
 
-std::ostream	&operator<<(std::ostream &o, Victim const &rhs)
+std::ostream & operator<<(std::ostream & o, Victim const & rhs)
 {
-	o << "I'm " << rhs.get_name() << " and I like otters !" << std::endl;
-	return (o);
+	o << "I'm " << rhs.getName() << " and I like otters !\n";
+	return o;
 }

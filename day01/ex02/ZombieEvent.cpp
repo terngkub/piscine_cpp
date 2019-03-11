@@ -1,44 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ZombieEvent.cpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 15:28:32 by terng             #+#    #+#             */
-/*   Updated: 2018/04/26 16:11:12 by terng            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ZombieEvent.hpp"
+#include <iostream>
 
-ZombieEvent::ZombieEvent(void)
+ZombieEvent::ZombieEvent() : _type("default_type")
 {
-	std::cout << "A ZombieEvent is created." << std::endl;
+	std::cout << "A zombie event is created.\n";
 }
 
-ZombieEvent::~ZombieEvent(void)
+ZombieEvent::~ZombieEvent()
 {
-	std::cout << "A ZombieEvent is destroyed." << std::endl;
+	std::cout << "A zombie event is ended.\n";
 }
 
-void	ZombieEvent::setZombieType(std::string type)
+void ZombieEvent::setZombieType(std::string type)
 {
-	this->type = type;
+	_type = type;
 }
 
-Zombie*	ZombieEvent::newZombie(std::string name)
+Zombie* ZombieEvent::newZombie(std::string name)
 {
-	Zombie *zombie = new Zombie(name, this->type);
-	return zombie;
+	return new Zombie(_type, name);
 }
 
-Zombie*	ZombieEvent::randomChump()
+Zombie* ZombieEvent::randomChump()
 {
-	std::string	names[10] = {
-		"AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", "JJJ"};
-
-	Zombie *zombie = new Zombie(names[rand() % 10], this->type);
-	return zombie;
+	std::string name_array[] = {"AAA", "BBB", "CCC", "DDD", "EEE"};
+	return newZombie(name_array[rand() % 5]);
 }
-
